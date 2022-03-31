@@ -1,0 +1,1346 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Review Volume (last updated on 20-4-2015)                            %%
+%% Trim Size: 9in x 6in                                                 %%
+%% Text Area: 7.35in (include runningheads) x 4.5in                     %%
+%% Main Text: 10 on 13pt                                                %%
+%% For support: Yolande Koh, <ykoh@wspc.com.sg>                         %%
+%%              D. Rajesh Babu, <rajesh@wspc.com.sg>                    %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%
+%\documentclass[wsdraft]{ws-rv9x6} % to draw border line around text area
+\documentclass{ws-rv9x6}
+%\usepackage{subfigure}   % required only when side-by-side / subfigures are used
+%\usepackage{ws-rv-thm}   % comment this line when `amsthm / theorem / ntheorem` package is used
+\usepackage{ws-rv-van}   % numbered citation & references (default)
+%\usepackage{ws-index}   % to produce multiple indexes
+\makeindex
+%\newindex{aindx}{adx}{and}{Author Index}       % author index
+%\renewindex{default}{idx}{ind}{Subject Index}  % subject index
+
+%--------------------------------------------------------------------------------------------------------------------------------------------------------
+% My Commands
+%--------------------------------------------------------------------------------------------------------------------------------------------------------
+\usepackage{subcaption}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage{comment} 
+\usepackage{caption}
+\usepackage{float}
+\restylefloat{table}
+
+\usepackage{mathrsfs}
+\usepackage{stmaryrd}
+\usepackage{marvosym}
+
+\usepackage{graphics}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\hypersetup{colorlinks=true, urlcolor=blue}
+
+\usepackage{amsthm}
+\usepackage{systeme}
+\usepackage[mathlines]{lineno}
+%\linenumbers
+
+\usepackage{tabularx}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{multirow}
+\usepackage{array}
+\newcolumntype{L}[1]{>{\raggedright\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+\newcolumntype{C}[1]{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+\newcolumntype{R}[1]{>{\raggedleft\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+
+\usepackage{pgfplots}
+\DeclareUnicodeCharacter{2212}{−}
+\usepgfplotslibrary{groupplots,dateplot}
+\usetikzlibrary{patterns,shapes.arrows}
+\pgfplotsset{compat=newest}
+%% the following commands are needed for some matlab2tikz features
+\usetikzlibrary{plotmarks}
+\usetikzlibrary{arrows.meta}
+\usepgfplotslibrary{patchplots}
+\usepackage{grffile}
+%% you may also want the following commands
+%\pgfplotsset{plot coordinates/math parser=false}
+%\newlength\figureheight
+%\newlength\figurewidth
+
+%https://www.overleaf.com/learn/latex/Questions/I_have_a_lot_of_tikz%2C_matlab2tikz_or_pgfplots_figures%2C_so_I%27m_getting_a_compilation_timeout._Can_I_externalise_my_figures%3F
+%\usetikzlibrary{external}
+%\tikzexternalize[prefix=./fig/tikz/]
+
+%\tikzifexternalizing{%
+%    \geometry{driver=none}
+%}{}%
+%\tikzset{external/force remake}
+
+% https://tex.stackexchange.com/questions/57737/automatically-set-file-name-of-externalized-graphics-equal-to-the-file-name-of-t
+%\newcommand{\input}[2]{%
+%    \tikzsetnextfilename{#2}%
+%    \input{#1#2.tex}%
+%}
+
+%--------------------------------------------------------------------------------------------------------------------------------------------------------
+\begin{document}
+\chapter[\textit{Wolb.} invasion \& establishment in \textit{Ae. Aegypti} populations to suppress Zika]{\textit{Wolbachia} invasion and establishment in \textit{Aedes Aegypti} populations to suppress Zika}
+
+\author{Cristina Korb}
+\address{Northwestern University, Department of Mathematics,\\
+2033 Sheridan Road, Evanston, IL 60208 \\
+cristina.korb@northwestern.edu}
+\author[C. Korb and M. Martcheva]{Maia Martcheva}
+\address{University of Florida, Department of Mathematics,\\
+1400 Stadium Rd, Gainesville, FL 32611\\
+maia@ufl.edu}
+
+
+\begin{abstract}
+Arboviral diseases such as dengue and Zika are diseases that pose a threat to health globally. 
+%Traditional control methods against mosquitoes populations that transmit arboviral diseases should be complemented by longer lasting and larger scale methods such as the use of an intracellular bacterium called \textit{Wolbachia}. 
+\textit{Wolbachia}-based control is an eco-friendly strategy that is carried out by infecting wild mosquitoes with a \textit{Wolbachia} strain and then strategically releasing the \textit{Wolbachia} infected mosquitoes with the goal of reducing disease transmission. In this study we develop and analyze an ordinary differential equation model to quantify the effectiveness of different release strategies of \textit{Wolbachia} infected mosquitoes in order to create a sustained infection of \textit{Wolbachia} in the mosquito population and reduce Zika transmission. The model accounts for mating between mosquitoes, assumes complete cytoplasmatic incompatibility and allows for different parameters related to vector-borne transmission. We compute all the reproduction numbers and derive analytic forms of equilibria, where possible. Then local stability analysis is performed for these equilibria. Using numerical simulations we investigate different release strategies of \textit{Wolbachia} infected mosquitoes and observe that there are multiple ways to reach persistence of \textit{Wolbachia} mosquitoes.
+%We also notice that for realistic parameter values the two mosquitoes populations are in a competitive-exclusion regime where only one species will survive. 
+We perform sensitivity analysis on the reproduction numbers to determine parameters' relative importance to \textit{Wolbachia}
+transmission and Zika prevalence. Lastly, we study the effects of seasonal variations on the spread of Zika and \textit{Wolbachia} infection invasion and establishment. %Numerical simulations with periodic birth rates, transitioning rates and death rates for both types of mosquitoes reveal that \textit{Wolbachia} persistence can be achieved but the release strategies require a larger ratio of \textit{Wolbachia} infected mosquitoes compared to wild mosquitoes at the time of release and that the disease takes longer to be eradicated. 
+\end{abstract}
+
+%\markboth{Even Page Header}{Odd Page Header} % Customized running heads
+
+\body
+
+\newtheorem{theorem}{Theorem}
+
+%**********************************
+\section{Introduction}
+\subsection{Zika Background}
+Zika virus (ZIKV) is a mosquito-borne viral disease that is mainly transmitted by \textit{Aedes aegypti} mosquitoes. Isolation of the virus from different \textit{Aedes} species has been demonstrated in laboratory but the focus of attention on ZIKV vectors in the Americas has
+been on \textit{Aedes aegypti}, which is also the vector of dengue virus (DENV), chikungunya (CHIKV), and urban
+Yellow Fever. A potential secondary vector and even more invasive species is \textit{Aedes albopictus}, mosquito present in temperate regions of
+Europe and North America, currently inhabiting 28 countries
+beyond its native tropical range in Southeast Asia \cite{enserink2008mosquito}. \textit{Aedes albopictus} may become a significant
+vector of ZIKV in the future if the virus were to adapt to them
+through genome microevolution as occurred with CHIKV in
+La Réunion 2005–2006 during the Indian Ocean outbreak \cite{schuffenecker2006genome}. A number of Zika vaccines have shown significant promise in phase 1 and phase 2 human clinical trials \cite{pattnaik2020current}. However, the widespread distribution of \textit{Aedes} mosquitoes along with the fact that as of April 2021, no Zika vaccines have been brought up to licensure, make control of the mosquito populations the most effective tool in combating Zika and other arboviral diseases. Traditional control measures are the use of insecticides and reduction of breeding sites. Some novel technologies to control mosquito populations have been developed more recently and include the release of genetically modified mosquitoes and the use of \textit{Wolbachia}, a maternally-inherited bacterium that once established within the mosquito population can help suppress arboviral diseases. 
+
+ZIKV was first discovered in rhesus monkeys in 1947 while researchers were studying yellow fever in Zika forest, Uganda and then in humans in Nigeria in 1952 \cite{dick1952zika}. Its potential effect on public health was not recognized until the outbreaks on Yap Island in 2007 and then in French Polynesia in 2013. During these early outbreaks, symptoms were mild including fever, rash, arthritis/arthralgia and conjunctivitis \cite{duffy2009zika}. The virus then migrated to Latin America with the first autochthonous  transmission detected in 2015 in Brazil \cite{zanluca2015first}. The incidences of ZIKV infections in the Americas peaked in early 2016 with the cumulative number of documented and suspected cases exceeding 1 million \cite{pattnaik2020current}. The number of incidences in the Americas and the world has waned significantly after 2017 with only 43 reported cases in US States and Territories as of Dec 3rd, 2020 \cite{CDC}. However, outbreaks
+and infection clusters continue to occur in some regions, such as India and Southeast Asia \cite{grubaugh2019misperceived}.
+
+As the virus moved from Africa to America some unexpected symptoms/complications related to ZIKV have emerged. The ZIKV epidemic in Brazil was linked to microcephaly in newborns, especially when the mother acquired the infection in the first trimester of the pregnancy \cite{de2016increase}. Also ZIKV infections were found to be associated with Guillain–Barré syndrome (GBS) in adults, an auto-immune disease of the peripheral nerves that can result in muscle weakness and paralysis \cite{styczynski2017increased}.
+This dramatic increase in microcephaly cases and GBS led to a declaration of public health emergency of international concern by WHO in February 2016.
+
+In addition to vector transmission Zika has also other modes of transmission. What makes Zika unique among arboviral diseases is that it can be transmitted through sexual contact. Although female-to-male and male-to-male transmission is possible, the most common sexual transmission is from male-to-female \cite{petersen2016update}. Male-to-female sexual transmission can occur regardless if the male shows symptoms. Zika can be detected in the semen  up to 370 days after infection, while shedding of the infected virions is most likely to happen up to 30 days from infection \cite{mead2018zika}. Vertical transmission can occur at any time during pregnancy in symptomatic or asymptomatic mothers \cite{brasil2016zika}. Vertical transmission has
+been estimated to occur in $26\%$ of fetuses of Zika infected mothers in French Guiana. This percentage
+is similar to transmission percentages that have been observed for other congenital infections
+\cite{pomar2018maternal}. Zika can also be transmitted through blood transfusion \cite{bloch2018revisiting} and although infective Zika particles have been detected in breast milk, milkborne transmission has not been confirmed \cite{mann2018breast}.
+
+\subsection{\textit{Wolbachia} background}
+\textit{Wolbachia} is a bacterium that occurs naturally in many different insect species but it is not present in the the \textit{Aedes aegypti} mosquitoes, the main vector of Zika. It was first identified in 1920s but did not capture attention until 1971, when UCLA researchers discovered that \textit{Culex pipiens} mosquito eggs were killed when the sperm of \textit{Wolbachia} infected males fertilized \textit{Wolbachia} free eggs 
+\cite{yen1971new}. \textit{Wolbachia} infected females will transmit the bacterium to their offspring. Complete maternal transmission means all the offspring of \textit{Wolbachia} infected females are \textit{Wolbachia} infected. Imperfect maternal transmission means that some of the offspring of \textit{Wolbachia} infected females do not have \textit{Wolbachia}. When deliberately introduced into \textit{Aedes aegypti}, \textit{Wolbachia} disrupts the reproductive cycle of hosts through a cytoplasmic incompatibility (CI) between the sperm of \textit{Wolbachia} infected males and eggs of \textit{Wolbachia} free females. The cross
+between \textit{Wolbachia} infected males and wild females produces embryos that die before hatching because of complete CI as depicted in Table \ref{ci-table}. Therefore CI produces a reproductive advantage for \textit{Wolbachia} infected females, leading the \textit{Wolbachia} infection to establish itself within mosquito populations \cite{jiggins2017spread}. Bidirectional CI can also alter the reproductive cycle of mosquitoes when a male is infected with a different strain of \textit{Wolbachia} to that of the female \cite{branca2009maintenance}. Other features of \textit{Wolbachia} infection include imperfect maternal transmission, loss of \textit{Wolbachia} infection \cite{ross2019loss}, and coinfection of two strains of \textit{Wolbachia}. 
+
+\vspace{0.1in}
+
+\begin{table}[H]
+\centering 
+\begin{tabular}{ c C{2.5cm} C{2.5cm} }\toprule
+& \multicolumn{2}{c}{\Female\, Female mosquito} \\ \cmidrule{2-3}
+%\diagbox[width=10em]{\Male \,Male\\mosquito}{\Female\, Female\\mosquito}&
+  \Male \,Male mosquito & \emph{Wolb}-infected &  \emph{Wolb}-free  \\ \midrule
+\emph{Wolb}-infected  & \emph{Wolb}-infected offspring & No offspring due to CI\\ \midrule
+\emph{Wolb}-free  & \emph{Wolb-}-infected offspring & \emph{Wolb}-free offspring\\ \bottomrule
+\end{tabular}
+\caption{Impact of \textit{Wolbachia} infection on different male-female mosquito couplings}
+\label{ci-table}
+\end{table}
+%\input{ci-table.tex}
+
+\vspace{0.1in}
+% https://www.cidrap.umn.edu/news-perspective/2021/02/zika-roadmap-outlines-steps-toward-diagnostics-treatment-vaccines
+In general, the \textit{Wolbachia} strain is named based on the source insect. For example, the \textit{Wolbachia} variant \textit{wMel}, was originally found in natural \textit{D. melanogaster} populations. Depending on the \textit{Wolbachia} strain (\textit{wMel, wMelPop, wAlB, wStri}, and more recently \textit{wAu}), infection with \textit{Wolbachia} can enhance viral blockage in \textit{Aedes aegypti} mosquitoes while also imposing additional fitness costs such as reduced life span, reduced fecundity, increased egg and larval development time and reduced survival of desiccated eggs. 
+It has been shown that the \textit{wMel} strain reduces the capacity to transmit ZIKV and CHIKV in \textit{Aedes aegypti} mosquitoes \cite{tan2017wmel} and this made the \textit{wMel} strain the most common used strain for field releases. The novel strain, \textit{wAu}, provides strong blocking of Dengue and Zika virus transmission while offering greater stability at higher temperatures when compared to \textit{wMel}, but it does not induce CI \cite{ant2018wolbachia}. The difference in the most common used \textit{Wolbachia} strains are listed in Table \ref{strains-table}.
+
+
+\begin{table}[ht]
+\centering
+\begin{tabular}{C{1.7cm} C{1cm} C{1.7cm} C{1.6cm} C{1.5cm} C{1.6cm}}
+\toprule
+Strain & CI & Viral Blockage & Maternal transmission & Loss of infection & Fitness Cost\\
+\midrule
+\textit{wAu} & None & High & High & Low & Medium\\
+\midrule
+\textit{wMel} & High & Medium & High & High & Medium\\
+\midrule
+\textit{wMelPop} & High & High & High & High & High\\
+\midrule
+\textit{wAlbA} & High & Medium & High & High & High\\
+\midrule
+\textit{wAlbB} & High & Medium & High & Medium & Medium\\
+\bottomrule
+\end{tabular}
+\caption{\textit{Wolbachia} strains characteristics in \textit{Aedes} mosquitoes as defined in \cite{hoffmann2015wolbachia}. Effect size is denoted as: High ($>90\%$), Medium ($20$–$90\%$), Low ($<20\%$) and None (no detectable effects)}
+\label{strains-table}
+\end{table}
+
+
+Traditional control methods against mosquito populations that transmit arboviral diseases have involved the use of larvicides and removal of breeding sites and preventive measures such as bed nets and indoor or personal sprays. These methods show short term and small scale efficacy and should still be continued, but they should be complemented with longer lasting and larger scale methods. One issue with these control measures is that they require major human intervention and approval, and the mosquitoes are becoming resistant to insecticide. Therefore there is a need for more powerful tools to fight Zika such as the use of RIDL (release of insects with dominant lethality ) and the use of \textit{Wolbachia}. These novel methods, especially RIDL, are met by a resistance from policy makers and the community  \cite{dickens2016time}. 
+ 
+\subsection{Zika Modeling Background} 
+Models developed for Zika transmission vary in complexity and methods used. They include compartmental, spatial, metapopulation, network and agent-based models \cite{wiratsudakul2018dynamics}. Here we will introduce the methods and results from a few deterministic models developed so far. For an overview of models that include more sophisticated methods and integrate real-world data the reader can refer to Wiratsudakul et al. \cite{wiratsudakul2018dynamics}. 
+Some of the first Zika transmission models appeared in 2016 (Funk et al. \cite{funk2016comparative}, Champagne et al. \cite{champagne2016structure}  and Kucharski et al. \cite{kucharski2016transmission}). These models were compartmental models that included the vector transmission and focused on a particular outbreak. For example, Funk et al. 
+compared three outbreaks of dengue and Zika virus in two different island settings in
+Micronesia, the Yap Main Islands and Fais, making full use of commonalities in disease and setting between the outbreaks.
+They found that the estimated reproduction numbers for Zika and dengue were similar
+when considered in the same setting, but that, conversely, reproduction number for the
+same disease can vary considerably by setting \cite{funk2016comparative}. 
+
+Gao et al. \cite{gao2016prevention} were the first to include sexual transmission alongside with vector transmission. They compute the basic reproduction number to be $R_0 = 2.055$ in
+which the percentage contribution of sexual transmission is $3.044\%$. 
+Sensitivity analyses indicates that $R_0$ is most sensitive to the mosquito parameters
+while sexual transmission increases the risk of infection and epidemic size, and prolongs the outbreak.
+They conclude that prevention and control efforts against Zika should include both control of mosquitoes and reduction of sexual
+transmission. 
+
+In addition to sexual transmission, Maxian et al. 2017, develop an age- and sex-structured mathematical model that describes the transmission dynamics of Zika. Since Zika was found to persist in semen long after it was undetectable in blood, in this model sexually active males have an extended period of sexual transmission. Instead of moving directly to the recovered class, they enter two additional infectious classes (asymptomatic infectious or symptomatic infectious) during which they are infectious to humans but not mosquitoes. The authors conclude that the sexual contribution to the reproduction number is  $4.8\%$  which is too minor to independently sustain an outbreak and therefore vector transmission is the main driver of the then ongoing epidemic \cite{maxian2017zika}.
+
+Since Zika was linked to microcephaly in newborns, including pregnant females in models became necessary in order to project Zika virus infections in childbearing women in the
+Americas. Tuncer et al. 2018 introduce six models of Zika, starting from the very generic vector–host
+model and incorporating one by one distinct features of Zika, such as asymptomatic
+infections, sexual transmission and separate class for pregnant women. The
+models were fit to time-series data of cumulative incidences and pregnant infections from the Florida Department of Health Daily Zika Update Reports. The structural and practical identifiability of the
+models was tested in order to find whether unknown model parameters can uniquely be determined. Some of their conclusions are that direct transmission
+rates are not practically identifiable and that the reproduction numbers are most sensitive to mosquito parameters and therefore control measures should be targeted towards controlling the mosquito population \cite{tuncer2018structural}.
+
+In more recent papers \cite{alzahrani93optimal} and \cite{gonzalez2020optimization} optimal control strategies are investigated. Azahrani et al. formulate a mathematical model on Zika virus with mutations and present their analysis in the presence of three controls: preventions through bednets for humans and pregnant women, the possible treatments for the infected compartments and the use of insecticide spraying on mosquitoes. They also use Colombia real data of Zika virus for the year 2016 and estimate and fit the model parameters and present a mathematical control problem for the elimination of the Zika virus infection in the community. They conclude that while every strategy has some limitations, the combined control was able to reduce infections in humans \cite{alzahrani93optimal}. Gonzales et al. also use data from Colombia and consider control strategies such as awareness and spraying campaigns. They found
+that the educational campaign (the use of insect repellent, bednets, and appropriate clothing) reduced
+the number of infected people, but not as well as the insecticide campaign \cite{gonzalez2020optimization}. 
+\subsection{\textit{Wolbachia} modeling background}
+Beginning in 1950s mathematical models that model the spread of \textit{Wolbachia} infection within a wild-type mosquito population have been proposed and studied in the literature. These models take into account the trade-off between the fitness benefits (CI) and costs (reduced life span and decreased fecundity of \textit{Wolbachia} infected mosquitoes) and they can be categorized into those that take into account the population dynamics and those that don't. Some examples of models that neglect changes in the population size are Caspari and Watson 1959 \cite{caspari1959evolutionary}, Turelli and Hoffman 1991 \cite{turelli1991rapid} and Schofield 2002 \cite{schofield2002spatially}. 
+The first model of \textit{Wolbachia} infection appeared in 1959 and used a discrete generation population genetic model. The authors concluded that the trade-off between the benefits and costs of \textit{Wolbachia} infection results in a bistable dynamics, where two stable equilibria exist: one where infection frequency is zero, and one where there is a high proportion of infected mosquitoes \cite{caspari1959evolutionary}. In order to reach the non-zero equilibrium, infection frequency must exceed a critical threshold value, determined by the trade-off between the reduction in fecundity of \textit{Wolbachia} infected females and the intensity of CI.  
+
+Local establishment of \textit{Wolbachia} does not necessarily guarantee spatial spread. \textit{Wolbachia} spread beyond the local environment depends on the initial infection frequency, the critical threshold frequency, the dispersal behaviour of the mosquitoes population, and the environment. Initial analysis by Turelli and Hoffmann showed that following a local establishment, a critical frequency threshold of less than $0.5$ is necessary for spatial spread to occur \cite{turelli1991rapid}. Later they show that as the critical threshold approaches $0.5$, wave speed slows dramatically, suggesting that a critical threshold value of $0.35$ or less is most likely necessary for spatial spread  \cite{turelli2017deploying}.
+
+\subsection{Modeling work combining Zika and \textit{Wolbachia}(and modeling work with dengue)}
+Many mathematical models have explored the impact of \textit{Wolbachia} on dengue transmission. For example Hughes and Britton \cite{hughes2013modelling} investigated the potential impact of a \textit{Wolbachia} strain with perfect maternal transmission and CI on the transmission of a single-strain dengue virus. They concluded that \textit{Wolbachia} has excellent potential for dengue control in areas where the reproduction number of dengue is not too large. Another study by Ndii et al. formulated a mathematical model that considered the competition for persistence between non-\textit{Wolbachia} and \textit{Wolbachia}-infected mosquitoes. To do this, the authors derived the steady state solutions of the model and showed that vertical transmission of \textit{Wolbachia}, death, maturation, and reproductive rates determine the dominance of \textit{Wolbachia} infected mosquitoes \cite{ndii2012modelling}. In \cite{koiller2014aedes} the authors build a model of \textit{Wobachia} infection into an \textit{Aedes aegypti} population of mosquito and then couple it with a classical dengue model. Their results show that if a sufficiently large number of \textit{Wolbachia} infected mosquitoes are released, then dengue will disappear and they use real data from field releases in Australia to calibrate their model. For a more extensive review of the mathematical models that give insight into the dynamics of the spread of \textit{Wolbachia} and the potential impact of \textit{Wolbachia} on dengue transmission and other arboviral diseases the reader can refer to \cite{dorigatti2018using} and \cite{ogunlade2021review}.
+
+To date, few mathematical models have been developed to investigate the impact of introducing \textit{Wolbachia} infected mosquitoes into wild mosquito population in order to suppress Zika transmission. Wang et al. \cite{wang2017modeling} formulate a differential equations model for Zika transmission without any control measures and two control models to study the impact of releasing \textit{Wolbachia} mosquitoes on the transmission of Zika in Brazil. The first control model considers the strategy of releasing \textit{Wolbachia} harboring female and male mosquitoes while the second strategy considers releasing only \textit{Wolbachia} harboring male mosquitoes.  They use an SEIR model for humans and an SEI model for the mosquitoes. Furthermore, the infected humans are divided into three classes: suspected cases, confirmed cases and asymptomatic cases. They combine the egg, larval and pupal stages as one aquatic stage. Their analysis suggests that releasing both \textit{Wolbachia} harboring female and male mosquitoes will replace the wild mosquito population, while releasing only \textit{Wolbachia} infected male mosquitoes will suppress or even eradicate the wild mosquitoes \cite{wang2017modeling}.
+
+To understand the transmission dynamics of Zika, Xue et al. \cite{xue2021releasing} develop a deterministic and a stochastic model that take into account direct transmission and the release of \textit{Wolbachia} infected male mosquitoes. Their deterministic model uses an SEIR model for humans and mosquitoes are grouped into six compartments: aquatic stage, susceptible males, susceptible females, exposed, infected and \textit{Wolbachia} infected male mosquitoes. Through numerical simulations they have found that the basic reproduction number is the most sensitive to the death rate of adult mosquitoes and thus reducing the lifespan of mosquitoes can reduce the basic reproduction number dramatically. Also, they conclude that the role of sexual transmission is not negligible and mitigation strategies for the transmission of Zika virus should not ignore sexual transmission. The release of \textit{Wolbachia} infected male mosquitoes is cost effective if the ratio of the release rate of \textit{Wolbachia} infected male mosquitoes over the number of wild mosquitoes at the initial state is between 0.1308 and 0.3750 \cite{xue2021releasing}. 
+
+\subsection{Seasonality background}
+Since the transmission of Zika virus is affected by periodic seasonality, it is worth further exploring how temperature fluctuations affect the dynamics of Zika transmission periodically. 
+The impact of climate variability on vectorborne diseases can be explained by the fact that the arthropod vectors of these diseases are cold-blooded. This means that  fluctuating temperatures and rainfall can impact the development, reproduction (including availability of breeding sites), behavior and population dynamics of mosquitoes \cite{gage2008climate}.
+However, this impact cannot be easily predicted.  Concluding that higher temperatures and increased rainfall will lead to increased transmission of arboviral diseases must be accompanied by a more careful and thoughtful analysis of the interplay between climate and human behavior \cite{sutherst2004global}. For example, extremely high temperatures can increase mosquito mortality \cite{reeves1994potential} and 
+heavy rainfall can wash out mosquito breeding sites \cite{reiter2001climate}. Also, during hot weather humans may seek refuge in air-conditioned buildings and thus avoiding mosquito bites \cite{reiter2003texas}. During dry season, domestic water storage container can provide more breeding sites for \textit{Aedes aegypti} mosquitoes and thus causing the incidence of the diseases they transmit to rise \cite{chretien2007drought}. 
+
+% We are not going to include in the model the fat that temperature also affect vectorial capacity so no need to mention this?
+%Temperature also can affect pathogen development within vectors and interact with humidity to influence vector survival and, hence, vectorial capacity.
+
+\textit{Aedes aegypti} mosquitoes originated from Africa, but now they are present in tropical, subtropical and temperate zones throughout the world. Large portions of the Americas, including the southernmost part of the eastern United States, the Caribbean, Central America, and lower elevation areas in Mexico and South America, have warm and humid climates well suited for proliferation of \textit{Aedes aegypti} \cite{world2009dengue}. 
+The lower temperature limit for \textit{Aedes aegypti} is around $10^{\circ}$ C, a temperature below which mosquitoes become inactive and unable to move. However, the  lower temperature limit at which female \textit{Aedes aegypti} has been found to cease biting is $15^{\circ}$C, both in the field and experimentally in the lab \cite{marchoux1903fievre}. 
+\textit{Aedes aegypti} are most active at $28^{\circ}$C \cite{connor1924suggestions} and females fed faster between $26^{\circ}$C and $35^{\circ}$C \cite{marchoux1903fievre}. The upper temperature limit for blood-feeding is above $36^{\circ}$C, and the mosquitoes die at $40^{\circ}$C \cite{christophers1960aedes}.
+CDC has updated the estimated range map for \textit{Aedes aegypti} by using county-level records along with historical records \cite{centers2018estimated}. According to CDC, the US regions where these mosquitoes can be found are expanding to include regions with more temperate climate rather than just subtropical or tropical climate \cite{centers2018estimated}. Thus it is important to investigate the effects of seasonality when the releasing of \textit{Wolbachia} infected mosquitoes spans multiple seasons.
+
+\subsection{Goals of the present work}
+The main goal of this model is to investigate how should \textit{Wolbachia} infected mosquitoes be released in wild mosquitoes populations in order for \textit{Wolbachia} to establish itself in the population and suppress Zika transmission. We are particularly interested in comparing what control measures should be taken when \textit{Wolbachia} is established within the wild mosquito population versus when it is not established. Previous models investigating the effect of \textit{Wolbachia} on Zika have concentrated mainly on exploring the release of \textit{Wolbachia} infected males or a combination of \textit{Wolbachia} infected females and males. In addition to exploring the release strategies of \textit{Wolbachia} infected males or simultaneous \textit{Wolbachia} infected females and males, this model explores  additional scenarios that include releasing \textit{Wolbachia} infected aquatic stage mosquitoes. We also investigate the effects of seasonal variations on the spread of Zika and \textit{Wolbachia infection} by running numerical simulations for a non-autonomous model with  seasonal variation into the birth rates,transitioning rates and death rates of mosquitoes.
+\section{Model Derivation}
+Here we consider a deterministic model of Zika transmission. As a vector-borne disease, Zika is spread primarily by mosquitoes from the \textit{Aedes aegypti} genus \cite{chang2016zika}. Reports have shown that in humans Zika can be transmitted both sexually by males \cite{foy2011probable} and from mothers to newborns. Zika infection during pregnancy has been linked to severe birth defects \cite{tabata2016zika}. Along with vector transmission, our model includes direct transmission. The human population is modeled using a susceptible-exposed-infectious-removed (SEIR) model. To investigate the effect of \textit{Wolbachia} on the dynamics of Zika spread, we consider two sub-populations of mosquitoes: (i) wild mosquitoes or \textit{Wolbachia} free mosquitoes, and (ii) \textit{Wolbachia} infected mosquitoes.  Thus the total mosquito population $N_v(t)$ consists of \textit{Wolbachia} free mosquitoes plus the \textit{Wolbachia} infected mosquitoes.
+
+The \textit{Wolbachia} free mosquito population is divided into an aquatic stage $A_{wf}(t)$, susceptible \textit{Wolbachia} free females $S_{wf}(t)$, Zika-infected \textit{Wolbachia} free females $I_{wf}(t)$, and \textit{Wolbachia} free males, $M_{wf}(t)$. Similarly, the \textit{Wolbachia} infected mosquito population is divided into an aquatic stage, $A_{wi}(t)$, susceptible \textit{Wolbachia} infected females $S_{wi}(t)$, Zika-infected \textit{Wolbachia} infected females $I_{wi}(t)$ and \textit{Wolbachia} infected males $M_{wi}(t)$.
+
+The total human population $N_h(t)$ is subdivided into four categories: (i) susceptible humans $S_h(t)$, (ii) exposed $E_h(t)$, (iii) infected $I_h(t)$, and (iv) recovered $R_h(t)$. Susceptible humans can become infected via sexual contact with an infected human, or through a bite from an infected female mosquito (\textit{Wolbachia} free or \textit{Wolbachia} infected). Since we don't have separation of sexes for the human population our direct transmission term is represented by a single value which is an average value between male-to-male and male-to-female transmission. We included this term because human-to-human transmission of Zika makes the model more realistic and because we want to compare the importance of direct transmission in the presence and in the absence of \textit{Wolbachia} infected mosquitoes.
+
+\textit{Wolbachia} free parents produce \textit{Wolbachia} free aquatic stage mosquitoes which become susceptible \textit{Wolbachia} free females and \textit{Wolbachia} free males. %We denote $\alpha$ as the sex ratio and $\eta$ as the transitioning rate from pupae. 
+We assume that the probability of an encounter of a \textit{Wolbachia} free female with a \textit{Wolbachia} free male is given by $M_{wf}/N_v$. Then the per capita rate at which \textit{Wolbachia} free females are fertilized by \textit{Wolbachia} free males is $\eta M_{wf}/N_v$ where $\eta$ is the egg-laying rate of \textit{Wolbachia} free mosquitoes. A susceptible \textit{Wolbachia} free female can become infected with Zika by biting an infected human.
+
+\textit{Wolbachia} infected susceptible females come from mating involving a \textit{Wolbachia} infected mother (the father may be either \textit{Wolbachia} infected or \textit{Wolbachia} free). It is known that \textit{Wolbachia} harboring mosquitoes are highly resistant to infection with two currently circulating Zika virus isolates from the recent Brazilian epidemic \cite{dutra2016wolbachia}. Thus we consider that Zika infected and \textit{Wolbachia} infected female mosquitoes transmit the virus at a lower rate. \textit{Wolbachia} also imposes various fitness costs, so we assume a different death rate for \textit{Wolbachia} infected mosquitoes \cite{mcmeniman2009stable}. The model assumes complete CI, so there is no mosquito offspring from \textit{Wolbachia} infected males with \textit{Wolbachia} free females. The maternal transmission is assumed to be perfect. All offspring from \textit{Wolbachia} infected female mosquitoes has inherited \textit{Wolbachia}, regardless of the status of the male.
+
+The equations that govern the dynamics are given below. 
+%Figure \ref{fig:model-diagram} gives the diagram of the model.
+
+\noindent \textbf{Human population (SEIR)}:
+\begin{align}
+\label{eq:1}\dot{S_h} & =\Lambda-(\beta_{vh}I_{wf}+\beta^w_{vh}I_{wi}+\beta_{hh}I_h)\dfrac{S_h}{N_h}-\mu_h S_h\\
+\label{eq:2}\dot{E_h} &= (\beta_{vh}I_{wf}+\beta^w_{vh}I_{wi}+\beta_{hh}I_h)\dfrac{S_h}{N_h} - (\nu_h+\mu_h)E_h\\
+\label{eq:3}\dot{I_h} &= \nu_h E_h - (\gamma_h + \mu_h)I_h\\ 
+\label{eq:4}\dot{R_h} &= \gamma_h I_h-\mu_h R_h
+\end{align}
+
+%\textcolor{red}{Reword this to include aquatic stage!}
+
+\noindent \textbf{Mosquito Population \textit{Wolbachia} free} - SI for female mosquitoes
+\begin{align}
+    \label{eq:5}\dot{A}_{wf} & = \eta \dfrac{S_{wf}M_{wf}}{N_v}\left(1-\dfrac{A_{wf}+A_{wi}}{K}\right)-(\gamma_{wf}+\mu_A)A_{wf}\\
+    \label{eq:6}\dot{S}_{wf} & = \alpha \gamma_{wf}A_{wf}-\beta_{hv}\dfrac{I_h}{N_h}S_{wf}-\mu_v S_{wf}\\
+    \label{eq:7}\dot{I}_{wf} & = \beta_{hv}\dfrac{I_h}{N_h}S_{wf}-\mu_v I_{wf}\\
+    \label{eq:8}\dot{M}_{wf} & = (1-\alpha)\gamma_{wf}A_{wf}-\mu_vM_{wf}   
+\end{align}
+
+%\textcolor{red}{Reword this to include aquatic stage!}
+
+
+\noindent \textbf{Mosquito Population \textit{Wolbachia} infected} - SI for female mosquitoes
+\begin{align}
+    \label{eq:9}\dot{A}_{wi} & =  S_{wi}\dfrac{(q_1M_{wi}+q_2M_{wf})}{N_v}\left(1-\dfrac{A_{wf}+A_{wi}}{K}\right)-(\gamma_{wi}+\mu_{Ai})A_{wi}\\ 
+    \label{eq:10}\dot{S}_{wi} & = \alpha \gamma_{wi}A_{wi} -\beta^w_{hv}\dfrac{I_h}{N_h}S_{wi}-\mu_{vi} S_{wi}\\ 
+    \label{eq:11}\dot{I}_{wi} & = \beta^w_{hv}\dfrac{I_h}{N_h}S_{wi}-\mu_{vi} I_{wi}\\ 
+    \label{eq:12}\dot{M}_{wi} & =  (1-\alpha)\gamma_{wi} A_{wi} -\mu_{vi}M_{wi}
+\end{align}
+where $N_h=S_h+E_h+I_h+R_h$ and $N_v=S_{wi}+S_{wf}+M_{wi}+M_{wf}+I_{wi}+I_{wf}.$
+
+The parameters pertaining to humans are defined in Table \ref{tab: param-table} along with their estimated values, and the parameters pertaining to mosquitoes are given in Table \ref{tab: param_mosq_table}. The diagram of the model is given in Figure \ref{fig:model-diagram}.
+
+\begingroup
+      \setlength{\tabcolsep}{0.7\tabcolsep}% Reduce \tabcolsep by 25%
+  \begin{longtable}{C{1.25cm} L{3cm} C{1.7cm} C{1.2cm} C{2.2cm} C{0.8cm}}
+   \toprule
+        Param. & Description & Value & Units & Range & Ref.\\
+   \midrule
+          $\Lambda$ & \footnotesize Recruitment as susceptible per unit time & $696$& \footnotesize people per day & &\\
+  \midrule
+  $\mu_h$ & \footnotesize Per capita natural death rate humans & $\frac{1}{78.8 \times 365}$ & \footnotesize day$^{-1}$ & \footnotesize $\left[\frac{1}{78.5 \times 365}, \frac{1}{79 \times 365}\right]$ & \cite{whowebsite}\\
+  \midrule
+$\nu_h$ & \footnotesize Average incubation rate for humans & $\frac{1}{10}$ & \footnotesize day$^{-1}$ & $\left[\frac{1}{14},\frac{1}{3}\right]$ & \cite{whowebsite}\\
+\midrule
+$\gamma_h$ & \footnotesize Per capita recovery rate humans & $\frac{1}{5}$ &  \footnotesize day$^{-1}$ & $\left[\frac{1}{7},\frac{1}{2}\right]$ & \cite{whowebsite}\\
+\midrule
+$b$ & \footnotesize Mosquito biting rate & 0.5 & \footnotesize bites per mosq per day & [0.3, 1.5] & \cite{gao2016prevention}\\
+\midrule
+$p_{vh}$ & \footnotesize Prob of transmission from wild vector to susceptible human per bite & 0.4 & \footnotesize unitless & [0.1, 0.75] & \cite{gao2016prevention}\\
+\midrule
+$\beta_{vh}$ & \footnotesize Transmission rate from wild vector to susceptible human per bite & $bp_{vh}$ & \footnotesize day$^{-1}$ & & \\ 
+\midrule
+$\beta^{w}_{vh}$ & \footnotesize Transmission rate from \textit{Wolbachia} infected vector to susceptible human per bite & $0.042\beta_{vh}$ & \footnotesize day$^{-1}$ & & \cite{walker2011w}\\
+\midrule
+$\beta_{hh}$ & \footnotesize Transmission rate from infected human to susceptible human & 0.05 &  \footnotesize day$^{-1}$& [0.001, 0.1] & \cite{gao2016prevention}\\
+\midrule
+$p_{hv}$ & \footnotesize Prob of transmission from infected human to susceptible mosquito & 0.5 & \footnotesize unitless & [0.3,0.75] & \cite{gao2016prevention}\\
+\midrule
+$\beta_{hv}$ & \footnotesize Transmission rate from infected human to wild mosquito per bite & $bp_{hv}$ & \footnotesize day$^{-1}$ & & \\
+\midrule
+$\beta^w_{hv}$ & \footnotesize Transmission rate from infected human to \textit{Wolbachia} infected mosquito per bite &$0.042\beta_{hv}$ & \footnotesize day$^{-1}$ & & \\
+\bottomrule
+ \caption{Definition of human parameters used in the model framework} 
+\label{tab: param-table}
+ \end{longtable}
+
+
+  \begin{longtable}{C{1.25cm} L{3cm} C{1.7cm} C{1.2cm} C{2.2cm} C{0.8cm}}
+   \toprule
+        Param. & Description & Value & Units & Range & Ref.\\
+    \midrule
+$K$ & \footnotesize Carrying capacity of aquatic stage & $10^6$ & \footnotesize num of aquatic stage mosq& $[10^4,10^9]$ & \footnotesize Assumed\\
+\midrule
+$\mu_{v}$ & \footnotesize Death rate wild mosq & 0.061 & \footnotesize day$^{-1}$ & [0.02 - 0.09] & \cite{mcmeniman2009stable}  \\
+\midrule
+$\mu_{vi}$ & \footnotesize Death rate \textit{Wolb} infected mosq & 0.068 & \footnotesize day$^{-1}$& [0.03 - 0.14]& \cite{styer2007mortality, walker2011w}\\
+\midrule
+$\gamma_{wf}$ & \footnotesize Transitioning rate of aquatic stage wild mosq & 0.11 & \footnotesize day$^{-1}$ & [0.1, 0.12] & \cite{hoffmann2014stability}\\
+\midrule
+$\gamma_{wi}$ & \footnotesize Transitioning rate of aquatic stage \textit{Wolb} infected mosq & 0.11 & \footnotesize day$^{-1}$ & [0.1, 0.12] & \cite{hoffmann2014stability}\\
+\midrule
+$\mu_A$ & \footnotesize Death rate of aquatic stage wild mosq & 0.02 & \footnotesize day$^{-1}$& & \cite{xue2017two}\\
+\midrule
+$\mu_{Ai}$ & \footnotesize Death rate of aquatic stage \textit{Wolb} infected mosq & 0.2 & \footnotesize day$^{-1}$& & \cite{xue2017two} \\
+\midrule
+$\eta$ & \footnotesize Egg laying rate of \textit{Wolb} free females (per day) & 13 & \footnotesize number of eggs per mosq per day & [12-18]& \cite{hoffmann2014stability, mcmeniman2009stable}\\
+\midrule
+$\alpha$ & \footnotesize Fraction of births that are female mosq & 0.5 & \footnotesize unitless & [0.34, 0.6] & \cite{arrivillaga2004food} \\
+\midrule
+$q_1$ & \footnotesize Egg laying rate of \textit{Wolb} infected females mating with \textit{Wolb} infected males & 11 & \footnotesize number of eggs per mosq per day& [8,12] & \cite{hoffmann2014stability, mcmeniman2009stable}\\
+\midrule
+$q_2$ & \footnotesize Egg laying rate of \textit{Wolb} infected females mating with \textit{Wolb} free males & 10 & \footnotesize number of eggs per mosq per day & [8,12] & \cite{hoffmann2014stability, mcmeniman2009stable}\\
+\bottomrule
+\caption{Definition of mosquito parameters in the model framework}
+\label{tab: param_mosq_table}
+\end{longtable}
+\endgroup
+
+%\begin{figure}
+%    \centering
+%    \includegraphics[scale=0.7]{diagram.png}
+%    \caption{Diagram of the model. Squares represent human compartments and circles represent vector compartments. Infected compartments are colored red and infection pathway is represented by the red dotted lines.}
+%    \label{fig:model-diagram}
+%\end{figure}
+
+\begin{figure}[H]
+    \def\svgwidth{\columnwidth}
+    \input{./fig/model_diagram/model_diagram.eps_tex}
+    \caption{Diagram of the model. Squares represent human compartments and circles represent vector compartments. Infected compartments are colored red and infection pathway is represented by the red dotted lines.}
+    \label{fig:model-diagram}
+\end{figure}
+
+\newpage
+\section{Model Analysis}
+Since the model simulates the dynamics of humans and mosquito populations, all the state variables and parameters must be non-negative. To show that the model is well posed, we need to show that when starting with non-negative initial values we remain with non-negative values for the variables for all future times.
+\subsection{Well-posedness of the Model}
+\begin{theorem}
+Let $F:D \to \mathbb{R}^{12}$ be
+$F(t,x)=(F_1(t,x), \dots, F_n(t,x))$ where
+\begin{multline*}
+\noindent D = \{(t, S_h, E_h, I_h, R_h, A_{wf}, S_{wf}, I_{wf}, M_{wf}, A_{wi}, S_{wi}, I_{wi}, M_{wi})\in \mathbb{R}^{13}_+ |\\ S_h \geq \epsilon_0, \epsilon_0 \leq N_h \leq \Lambda /\mu_h, A_{wf}, A_{wi}\leq K, N_v^{wf}\leq \gamma_{wf}K/\mu_v,N_v^{wi}\leq \gamma_{wi}K/\mu_{vi}\}
+\end{multline*}
+ for some $0< \epsilon_0 < \dfrac{\Lambda}{\mu_h}$ and where $N_h=S_h+E_h+I_h+R_h$, $N_v^{wf}=S_{wf} +I_{wf}+M_{wf}$ and $N_v^{wi}=S_{wi} +I_{wi}+M_{wi}$.
+The system (\ref{eq:1})-(\ref{eq:12}) is epidemiologically and mathematically well-posed in the valid domain $D$.
+
+%which is a feasible region for the system dynamics is positively invariant.
+\end{theorem}
+
+Proof: 
+Since $F$ is continuously differentiable in $D$ we have that $F$ is locally Lipschitz in $D$. Then 
+%by Theorem \ref{wpthm}, 
+for any $(t_0,x_0)$ in $D$, there exists a unique solution passing through $(t_0,x_0)$.
+%Then whenever $t\geq 0$, 
+
+%$x=(S_h(t), E_h(t)$, $I_h(t), R_h(t), A_{wf}(t), S_{wf}(t), I_{wf}(t), M_{wf}(t), A_{wi}(t), S_{wi}(t), I_{wi}(t), M_{wi}(t)$) with $x_j=0$ we will show that $F_j(t,x)\geq 0$.
+Now, assume that we start from positive values and at some point in time $t_1$ we have that $x_j=0$. Then as seen below, we have that $F_j(t_1,x) \geq 0$ which means that $x_j$ is nondecreasing and therefore returns to the positive quadrant or remains 0:
+
+\noindent $\Lambda \geq 0, 
+(\beta_{vh}I_{wf}+\beta^w_{vh}I_{wi}+\beta_{hh}I_h)\dfrac{S_h}{N_h} \geq 0,
+ \nu_h E_h \geq 0,
+\gamma_h I_h \geq 0,
+\eta \dfrac{S_{wf}M_{wf}}{N_v}\left(1-\dfrac{A_{wi}}{K}\right)\geq 0,\\ A_{wi} \leq K,
+\alpha \gamma_{wf}A_{wf} \geq 0,
+ \beta_{hv}\dfrac{I_h}{N_h}S_{wf} \geq 0,
+(1-\alpha)\gamma_{wf}A_{wf}\geq 0,\\
+ S_{wi}\dfrac{(q_1M_{wi}+q_2M_{wf})}{N_v}\left(1-\dfrac{A_{wf}}{K}\right)\geq 0, A_{wf}\leq K,
+     \alpha \gamma_{wi}A_{wi} \geq 0,
+     \beta^w_{hv}\dfrac{I_h}{N_h}S_{wi} \geq 0,
+     (1-\alpha)\gamma_{wi} A_{wi} \geq 0.$
+
+%Then for every $x^0=(S_h(0), E_h(0), I_h(0), R_h(0), A_{wf}(0), S_{wf}(0), I_{wf}(0), M_{wf}(0), A_{wi}(0), S_{wi}(0), I_{wi}(0), M_{wi}(0))\in\mathbb{R}_+^{12}$, there exists a unique solution of $x'=F(t,x)$, $x(0)=x^0$, with values in $\mathbb{R}^{12}_+$, which is defined on some interval $[0,b)$. 
+%If $b<\infty$, then 
+%lim sup $\sum_{j=1}^n x_j(t)=\infty$.
+
+Now we have that $0\leq S_h,E_h,I_h,R_h\leq N_h(t)$. Adding the first four equations we get $\dot{N_h(t)}=\Lambda-\mu_hN_h(t)$. Integrating and taking $\liminf$ and $\limsup$ for $t \to \infty$ we have
+$$N_h(0)\leq \liminf N_h(t) = \limsup N_h(t) = \dfrac{\Lambda}{\mu_h}$$ which implies that $\lim N_h(t)=\dfrac{\Lambda}{\mu_h}.$ 
+
+Now we will show the boundness of $A_{wf}$. We claim that $A_{wf}(t) \leq K$ for all $t.$
+Suppose there exists a time $t_1$ such that $A_{wf}(t_1) > K$. Then $\dot{A}_{wf}(t_1) < 0$ which means that $A_{wf}$ is decreasing near $t_1$. Then we must have that $A_{wf}(t_1+\epsilon) < K$ for some $\epsilon > 0$ and thus $A_{wf}(t_1) \leq K$ which is a contradiction. Therefore $A_{wf}(t) \leq K$ for all $t$. Similarly, we have that $A_{wi}(t) \leq K$ for all $t$.
+
+Adding equations (\ref{eq:6}) - (\ref{eq:8}) we have the following 
+$\dot{N}_v^{wf}(t)=\gamma_{wf}A_{wf}(t)-\mu_vN_v^{wf}(t)$.
+Since $A_{wf}(t) \leq K$, we get that $\dot{N}_v^{wf}(t)\leq \gamma_{wf}K-\mu_vN_v^{wf}(t)$. Separating variables and solving for $N_v^{wf}(t)$ we have
+$$N_v(t)\leq \dfrac{\gamma_{wf}K}{\mu_v}+e^{-\mu_vt}\left(N_v^{wf}(0)-\dfrac{\gamma_{wf}K}{\mu_v}\right).$$ 
+\noindent If $N_v^{wf}(0) \leq \dfrac{\gamma_{wf}K}{\mu_v}$, then, by previous inequality we have $N_v(t)\leq \dfrac{\gamma_{wf}K}{\mu_v}$ and thus $D$ is a positively-invariant set. If $N_v^{wf}(0) > \dfrac{\gamma_{wf}K}{\mu_v}$, then we have that $\dot{N}_v^{wf}\leq 0$ and the wild mosquito population is decreasing. Also, at $t$ goes to infinity we have that $N_v^{wf}(t)$ approaches $\dfrac{\gamma_{wf}K}{\mu_v}$. A similar argument holds for $N_v^{wi}(t)$. Therefore the solutions either enter $D$ in finite time or $N_v^{wf}(t)$ approaches $\dfrac{\gamma_{wf}K}{\mu_v}$ and $N_v^{wi}(t)$ approaches $\dfrac{\gamma_{wi}K}{\mu_{vi}}$,  thus $D$ is an attracting set. 
+
+\subsection{Disease free and only wild mosquitoes present}
+When there is no Zika present in the vectors or human population and no  mosquitoes are infected with \textit{Wolbachia} we obtain the following disease free equilibrium point $E^{(1)}$ is
+
+\noindent $\left(\frac{\Lambda}{\mu_h},0,0,0,K\left(1-\frac{1}{R}\right),\frac{\alpha\gamma_{wf}}{\mu_v}K\left(1-\frac{1}{R}\right),0,\frac{(1-\alpha)\gamma_{wf}}{\mu_v}K\left(1-\frac{1}{R}\right),0,0,0,0\right)$ 
+
+\noindent where $R=\dfrac{\eta \alpha (1-\alpha)\gamma_{wf}}{\mu_v (\gamma_{wf}+\mu_A)}$ denotes the offspring reproduction number of wild mosquitoes.
+
+\begin{theorem}
+If $R > 1$ then the equilibrium $E^{(1)}$ exists. If $R_w=\dfrac{q_2\alpha(1-\alpha)\gamma_{wi}}{\mu_{vi}(\gamma_{wi}+\mu_{Ai})R}< 1$ and $R_Z=\dfrac{\beta_{vh}\beta_{hv}\nu_h\alpha\mu_h\gamma_{wf}}{\Lambda\mu^2_v(\mu_h+\nu_h)(\gamma_h+\mu_h)}K\left(1-\dfrac{1}{R}\right)
+    +\dfrac{\nu_h\beta_{hh}}{(\mu_h+\nu_h)(\gamma_h+\mu_h)} < 1$ then $E^{(1)}$ is locally asymptotically stable. If any of the last two inequalities is reversed, then $E^{(1)}$ is unstable. 
+\end{theorem}
+\begin{proof}
+The Jacobian for the system evaluated at the equilibrium $E^{(1)}$ is a block matrix $J^{(1)}=\left(
+\begin{array}{c|c}
+    B & \bigstar\\
+    \hline
+    0 & C
+\end{array}
+\right)$ where  
+
+\vspace{0.2in}
+\noindent $B=\left(
+\begin{array}{cccccccc}
+ -\mu _h & 0 & -\beta _{\text{hh}} & 0 & 0 & 0 & -\beta _{\text{vh}} & 0 \\%row1
+ 0 & -e & \beta _{\text{hh}} & 0 & 0 & 0 & \beta _{\text{vh}} & 0  \\%row2
+ 0 & \nu _h & -f & 0 & 0 & 0 & 0 & 0 \\%row3
+ 0 & 0 & \gamma _h & -\mu _h & 0 & 0 & 0 & 0 \\%row4
+ 0 & 0 & 0 & 0 & -b-d & \frac{(1-\alpha)^2 \eta }{R} & c & \frac{\alpha ^2 \eta }{R}  \\
+ 0 & 0 & -a & 0 & \alpha  \gamma _{\text{wf}} & -\mu _v & 0 &
+   0 \\
+ 0 & 0 & a & 0 & 0 & 0 & -\mu _v & 0 \\
+ 0 & 0 & 0 & 0 & (1-\alpha) \gamma _{\text{wf}} & 0 & 0 & -\mu _v\\
+\end{array}
+\right)$ and
+
+\vspace{0.2in}
+\noindent $C=\left(
+\begin{array}{cccc} -\mu _{\text{Ai}}-\gamma _{\text{wi}} &
+   \frac{(1-\alpha) q_2}{R} & 0 & 0 \\
+  \alpha  \gamma _{\text{wi}} & -\mu _{\text{vi}} & 0
+   & 0 \\
+  0 & 0 & -\mu _{\text{vi}} & 0 \\
+  (1-\alpha) \gamma _{\text{wi}} & 0 & 0 & -\mu
+   _{\text{vi}} \\
+\end{array}
+\right).$ 
+
+\noindent Here the following notations were made first:
+\vspace{0.2in}
+\noindent $a=\dfrac{\alpha  K (R-1) \mu _h \beta _{\text{hv}} \gamma
+   _{\text{wf}}}{\Lambda  R \mu _v}$, $b=\dfrac{(1-\alpha) \alpha  \eta  (R-1) \gamma _{\text{wf}}}{R
+   \mu _v}$, $c=-\dfrac{(1-\alpha) \alpha  \eta }{R}$, $d=\mu _A+\gamma _{\text{wf}}$, $e=\mu _h+\nu _h$, $f=\gamma _h+\mu _h$, $g=\dfrac{(1-\alpha)q_2}{R}$ 
+   and $h=-\mu_{Ai}-\gamma_{wi}$.\\
+   
+   The eigenvalues of the Jacobian will be the eigenvalues of matrix $B$ and matrix $C$. In order for the eigenvalues of $C$ to have negative real part, the determinant must be positive. This means that 
+$\dfrac{\eta \mu_{vi}\gamma_{wf}(\gamma_{wi}+\mu_{Ai})}{q_2\gamma_{wi}\mu_v(\gamma_{wf}+\mu_A)}>1$. This can be written as $\dfrac{R_w}{R}<1$ where $R_w=\dfrac{q_2\alpha(1-\alpha)\gamma_{wi}}{\mu_{vi}(\gamma_{wi}+\mu_{Ai})}$ and can be interpreted as the invasion number of \textit{Wolbachia} infected mosquitoes in absence of disease. 
+
+The characteristic polynomial corresponding to $B$ is
+$P(\lambda)=(\mu_v+\lambda)P_1(\lambda)P_2(\lambda)$ where $P_1(\lambda)=-(b+d+\lambda)(\mu_v+\lambda)+\mu_v(\gamma_{wf}+\mu_A)$ and $P_2(\lambda)=\beta_{vh}\nu_ha-(\mu_v+\lambda)\left[(e+\lambda)(f+\lambda)-\nu_h\beta_{hh}\right].$ After substitutions, we have that all roots of $P_1(\lambda)=0$ have negative real part.
+
+Rewriting $P_2(\lambda)=0$ we get that $(\mu_v+\lambda)(e+\lambda)(f+\lambda)=\beta_{vh}\nu_h\dfrac{\alpha  K (R-1) \mu _h \beta _{\text{hv}} \gamma
+   _{\text{wf}}}{\Lambda  R \mu _v}+(\mu_v+\lambda)\nu_h\beta_{hh}.$ Then we will have
+   $$\dfrac{\beta_{vh}\nu_h\alpha  K (R-1) \mu _h \beta _{\text{hv}} \gamma
+   _{\text{wf}}}{\Lambda  R \mu _v(\mu_v+\lambda)(e+\lambda)(f+\lambda)}+\dfrac{(\mu_v+\lambda)\nu_h\beta_{hh}}{(\mu_v+\lambda)(e+\lambda)(f+\lambda)}=1.$$ 
+   Define 
+   \begin{align*}
+       G(\lambda) &= \dfrac{\beta_{vh}\nu_h\alpha  K (R-1) \mu _h \beta _{\text{hv}} \gamma
+   _{\text{wf}}}{\Lambda  R \mu _v(\mu_v+\lambda)(e+\lambda)(f+\lambda)}+\dfrac{\nu_h\beta_{hh}}{(e+\lambda)(f+\lambda)}\\
+   &= \dfrac{\beta_{vh}\beta_{hv}\alpha\mu_h\gamma_{wf}}{\Lambda\mu_v(\mu_v+\lambda)(e+\lambda)(f+\lambda)}K\left(1-\dfrac{1}{R}\right)+\dfrac{\nu_h\beta_{hh}}{(e+\lambda)(f+\lambda)}.
+   \end{align*}
+
+We define the reproduction number of Zika in absence of \textit{Wolbachia} infected mosquitoes $R_Z=G(0)$, that is,
+$$R_Z=\dfrac{\beta_{vh}\beta_{hv}\nu_h\alpha\mu_h\gamma_{wf}}{\Lambda\mu^2_v(\mu_h+\nu_h)(\gamma_h+\mu_h)}K\left(1-\dfrac{1}{R}\right)
+    %\underbrace{K\left(1-\dfrac{1}{R}\right)}_{=A^{(1)}_{wf}}
+    +\dfrac{\nu_h\beta_{hh}}{(\mu_h+\nu_h)(\gamma_h+\mu_h)}.$$
+Furthermore, let $\dfrac{\nu_h\beta_{vh}\beta_{hv}\alpha\mu_h\gamma_{wf}}{\Lambda\mu^2_v(\mu_h+\nu_h)(\gamma_h+\mu_h)}K\left(1-\dfrac{1}{R}\right)=R^{wf}_Z$ and $\dfrac{\nu_h\beta_{hh}}{(\mu_h+\nu_h)(\gamma_h+\mu_h)}=R_d$. Then we have that $R_Z=G(0)=R^{wf}_Z+R_d.$ 
+If $R_Z>1$, then the characteristic equation has a real positive root because $G(0)=R_Z>1$ and $G(\lambda)$ is a decreasing function of $\lambda$ with $\lim_{\lambda \to \infty}G(\lambda)=0$ where $\lambda$ is assumed to be real. However, if $R_Z<1$, then all roots have negative real parts. To see this, we assume that there is a $\lambda$ with $Re(\lambda) \geq 0$. Then we have the following
+\begin{align*}
+|G(\lambda)|&\leq \dfrac{\beta_{vh}\beta_{hv}\alpha\mu_h\gamma_{wf}}{\Lambda\mu_v(|\mu_v+\lambda|) (|e+\lambda|) (|f+\lambda|)}K\left(1-\dfrac{1}{R}\right)+\dfrac{\nu_h\beta_{hh}}{(|e+\lambda|) (|f+\lambda|)}\\
+& \leq G(Re(\lambda)) \leq G(0)=R_Z <1
+\end{align*}
+Therefore, $|G(\lambda)|<1$ and such a $\lambda$ with nonnegative real part cannot be a solution to the characteristic equation.
+\end{proof}
+
+\subsection{Disease free and only \textit{Wolbachia} infected mosquitoes present}
+When there is no Zika present in the vectors or human population and all  mosquitoes are infected with \textit{Wolbachia} we have the following disease free equilibrium point $E^{(2)}$ is
+
+\noindent $\left(\frac{\Lambda}{\mu_h},0,0,0,K\left(1-\frac{1}{M}\right),\frac{\alpha\gamma_{wi}}{\mu_{vi}}K\left(1-\frac{1}{M}\right),0,\frac{(1-\alpha)\gamma_{wi}}{\mu_{vi}}K\left(1-\frac{1}{M}\right),0,0,0,0\right)$ where $M=\dfrac{q_1 \alpha (1-\alpha)\gamma_{wi}}{\mu_{vi} (\gamma_{wi}+\mu_{Ai})}$ is the offspring reproduction number of \textit{Wolbachia} infected mosquitoes. Note we rearranged the equations such that the equations for \textit{Wolbachia} infected mosquitoes are appearing before the \textit{Wolbachia} free mosquitoes.
+
+\begin{theorem}
+If $M>1$ then $E^{(2)}$ exists. If $$R^i_Z=\dfrac{\beta^w_{vh}\beta^w_{hv}\nu_h\alpha \mu_h\gamma_{wi}}{\Lambda \mu^2_{vi}(\mu_h+\nu_h)(\gamma_h+\mu_h)}K\left(1-\dfrac{1}{M}\right)+\dfrac{\nu_h\beta_{hh}}{(\mu_h+\nu_g)(\gamma_h+\mu_h)}<1$$ then $E^{(2)}$ is locally asymptotically stable. If $R^i_Z>1$ then $E^{(2)}$ is unstable. 
+\end{theorem}
+\begin{proof}
+The Jacobian of the system evaluated at $E^{(2)}$  is $J^{(2)}=\left(
+\begin{array}{c|c}
+    D & \bigstar\\
+    \hline
+    0 & E
+\end{array}
+\right)$ where 
+
+\vspace{0.2in}
+\noindent $D=\left(
+\begin{array}{cccccccc}
+ -\mu _h & 0 & -\beta _{\text{hh}} & 0 & 0 & 0 & -\beta^w_{vh} & 0 \\
+ 0 & -e & \beta _{\text{hh}} & 0 & 0 & 0 & \beta^w_{vh} & 0 \\
+ 0 & \nu _h & -f & 0 & 0 & 0 & 0 & 0 \\
+ 0 & 0 & \gamma _h & -\mu _h & 0 & 0 & 0 & 0 \\
+ 0 & 0 & 0 & 0 & -(n+h) & \frac{(1-\alpha)^2
+   q_1}{M} & -r & \frac{\alpha ^2 q_1}{M} \\
+ 0 & 0 & -g & 0 & \alpha  \gamma _{\text{wi}} &
+   -\mu _{\text{vi}} & 0 & 0 \\
+ 0 & 0 & g & 0 & 0 & 0 & -\mu _{\text{vi}} & 0 \\
+ 0 & 0 & 0 & 0 & (1-\alpha) \gamma _{\text{wi}} & 0 & 0 & -\mu _{\text{vi}}\\
+\end{array}
+\right)$ and
+
+\vspace{0.2in}
+\noindent $E=\left(
+\begin{array}{cccc}
+-d & 0 & 0 & 0 \\
+\alpha  \gamma _{\text{wf}} & -\mu _v & 0 & 0 \\
+0 & 0 & -\mu _v & 0\\
+(1-\alpha) \gamma _{\text{wf}} & 0 & 0 & -\mu _v\\
+\end{array}
+\right).$
+
+\noindent The matrix $E$ has four obvious negative eigenvalues equal to the diagonal entries $-d$ and $-\mu_v$.
+The matrix $D$ has two negative eigenvalues equal to $-\mu_h$. Let $D^*$ be the matrix $D$ after removing the column and row corresponding to the two eigenvalues equal to $-\mu_{h}$. 
+
+The characteristic polynomial of the matrix $D^*$ is $P(\lambda)=(\mu_{vi}+\lambda)P_1(\lambda)P_2(\lambda)$
+where $$P_1(\lambda)= \dfrac{q_1\alpha(1-\alpha)\gamma_{wi}}{M}-(n+h+\lambda)(\mu_{vi}+\lambda)$$ and $$P_2(\lambda)=\beta^w_{vh}\nu_h g-(\mu_{vi}+\lambda)[(e+\lambda)(f+\lambda)-\nu_h\beta_{hh}].$$
+
+\noindent It can be easily shown that the roots of $P_1(\lambda)=0$ are negative when $M > 1$.
+
+The characteristic equation corresponding to $P_2(\lambda)$ is 
+$$P_2(\lambda)=\beta^w_{vh}\nu_h g-(\mu_{vi}+\lambda)[(e+\lambda)(f+\lambda)-\nu_h\beta_{hh}]=0$$
+and it can be written as
+$$\dfrac{\beta^w_{vh}\nu_h g}{(\mu_{vi}+\lambda)(e+\lambda)(f+\lambda)}+\dfrac{\nu_h\beta_{hh}}{(e+\lambda)(f+\lambda)}=1.$$
+
+\noindent Define
+    $G(\lambda) = \dfrac{\beta^w_{vh}\nu_h g}{(\mu_{vi}+\lambda)(e+\lambda)(f+\lambda)}+\dfrac{\nu_h\beta_{hh}}{(e+\lambda)(f+\lambda)}$.
+    We define the reproduction number of Zika in absence of wild mosquitoes as $R_Z^i=G(0)$. Substituting the values of e, f and $g=\dfrac{\alpha  K (M-1) \mu_h \gamma_{\text{wi}} \beta^w_{hv}}{\Lambda  M \mu_{\text{vi}}}$, we get
+$$R_Z^i=\dfrac{\beta^w_{vh}\beta^w_{hv}\nu_h\alpha \mu_h\gamma_{wi}}{\Lambda \mu^2_{vi}(\mu_h+\nu_h)(\gamma_h+\mu_h)}K\left(1-\dfrac{1}{M}\right)+\dfrac{\nu_h\beta_{hh}}{(\mu_h+\nu_g)(\gamma_h+\mu_h)}.$$ Furthermore, let $\dfrac{\beta^w_{vh}\beta^w_{hv}\nu_h\alpha \mu_h\gamma_{wi}}{\Lambda \mu^2_{vi}(\mu_h+\nu_h)(\gamma_h+\mu_h)}K\left(1-\dfrac{1}{M}\right)=R_Z^{wi}$. Then we have that $R_Z^i=R_Z^{wi}+R_d$. If $R_Z^i > 1$, then the characteristic equation has a real positive root because $G(0)=R_Z^i>1$ and $G(\lambda)$ is a decreasing function of $\lambda$ with $\lim_{\lambda \to \infty}G(\lambda)=0$ where $\lambda$ is assumed to be real. However, if $R_Z^i <1$, then all roots have negative real parts. To see this we assume there is a $\lambda$ with $Re(\lambda) \geq 0$. Then we have the following
+\begin{align*}
+|G(\lambda)|&\leq \dfrac{\beta^w_{vh}\nu_h g}{(|\mu_{vi}+\lambda|)(|e+\lambda|)(|f+\lambda|)}+\dfrac{\nu_h\beta_{hh}}{(|e+\lambda|)(|f+\lambda|)}\\
+    & \leq G(Re(\lambda)) \leq G(0)=R_Z^{i}<1.
+\end{align*}  
+Therefore, $G(\lambda)<1$ and such a $\lambda$ with a nonnegative real part cannot be a solution to the characteristic equation.
+
+\end{proof}
+
+
+
+\subsection{Disease free and both types of mosquitoes present}
+When there is no Zika present in the vectors or human population but some  mosquitoes are infected with \textit{Wolbachia} we have the following disease free equilibrium point $E^{(3)}$ is
+
+\noindent $\left(\frac{\Lambda}{\mu_h},0,0,0,A^{(3)}_{wf},\frac{\alpha \gamma_{wf}A^{(3)}_{wf}}{\mu_v},0,\frac{(1-\alpha)\gamma_{wf}A^{(3)}_{wf}}{\mu_v},CA^{(3)}_{wf},\frac{\alpha\gamma_{wi}CA^{(3)}_{wf}}{\mu_{vi}},0,\frac{(1-\alpha)\gamma_{wi}CA^{(3)}_{wf}}{\mu_{vi}}\right)$ where $C=\dfrac{\gamma_{wf}\mu_{vi}R}{\gamma_{wi}\mu_vM}\left(1-\dfrac{R_w}{R}\right)$, $A^{(3)}_{wf}=\dfrac{K}{1+C}\left( 1-\dfrac{1}{R}-\dfrac{1}{M}\left(1-\dfrac{R_w}{R}\right)\right)$ and for $A^{(3)}_{wf}$ to exist we must have that $\dfrac{1}{R}+\dfrac{1}{M}\left(1-\dfrac{R_w}{R}\right)<1$. 
+
+The stability of this disease free equilibrium can be established using the next generation matrix. The infected compartments are $E_h$, $I_h$, $I_{wf}$ and $I_{wi}$ ordered $(E_h, I_h, I_{wf}, I_{wi})$. The nonlinear terms with new infections $\mathcal{F}$ and the outflow term $\mathcal{V}$ are given by
+
+\vspace{0.2in}
+$\mathcal{F}=\left(\begin{array}{c}
+     (\beta_{vh}I_{wf}+\beta^w_{vh}I_{wi}+\beta_{hh}I_h)\dfrac{S_h}{N_h}  \\
+     0\\
+     \beta_{hv}\dfrac{I_h}{N_h}S_{wf}\\
+     \beta^w_{hv}\dfrac{I_h}{N_v}S_{wi}
+\end{array}\right)$
+ and $\mathcal{V}=\left(\begin{array}{c}
+      (\nu_h+\mu_h)E_h \\
+      -\nu_hE_h+(\gamma_h+\mu_h)I_h\\
+      \mu_vI_{wf}\\
+      \mu_{vi}I_{wi}      
+ \end{array}\right)$.
+ 
+ \vspace{0.2in}
+
+ \noindent The next generation matrix is 
+ 
+  \vspace{0.2in}
+ $\mathcal{K}=FV^{-1}=\left(\begin{array}{cccc}
+      \dfrac{\beta_{hh}\nu_h}{(\gamma_h+\mu_h)(\nu_h+\mu_h)} & \dfrac{\beta_{hh}}{\gamma_h+\mu_h} & \dfrac{\beta_{vh}}{\mu_v} & \dfrac{\beta^w_{vh}}{\mu_{vi}}  \\
+      0& 0 & 0 & 0\\
+      \dfrac{\nu_h\beta_{hv}\mu_hS^{(3)}_{wf}}{\Lambda(\gamma_h+\mu_h)(\nu_h+\mu_h)}& \dfrac{\beta_{hv}\mu_hS^{(3)}_{wf}}{\Lambda(\gamma_h+\mu_h)} & 0 &0\\
+       \dfrac{\nu_h\beta^w_{hv}\mu_hS^{(3)}_{wi}}{\Lambda(\gamma_h+\mu_h)(\nu_h+\mu_h)}& \dfrac{\beta^w_{hv}\mu_hS^{(3)}_{wi}}{\Lambda(\gamma_h+\mu_h)} & 0 &0
+ \end{array}\right).$\\
+ 
+ \vspace{0.2in}
+ 
+ \noindent The reproduction of Zika in presence of both types of mosquitoes denoted by $R_{0Z}^{NG}$ is given by the spectral radius of $\mathcal{K}$. So $R_{0Z}^{NG}=\rho(\mathcal{K}).$
+ 
+ The characteristic polynomial corresponding to $\mathcal{K}$ is $t^2-R_dt-q=0$
+where
+
+ $q=\dfrac{1}{1+C}\left( 1-\dfrac{1}{R}-\dfrac{1}{M}\left(1-\dfrac{R_w}{R}\right)\right)\left(\dfrac{R^{wf}_Z}{1-1/R}+C\dfrac{R^{wi}_Z}{1-1/M}\right)$ and it is clearly positive when $R>1$, $M>1$ and $\dfrac{1}{R}+\dfrac{1}{M}\left(1-\dfrac{R_w}{R}\right)<1$. The solutions for this quadratic are given by $t=\dfrac{R_d \pm\sqrt{R_d^2+4q}}{2}$.
+ Therefore the reproduction number of Zika in presence of both types of mosquitoes defined using the next generation method, $R_{0Z}^{NG}$, is the spectral radius of $\mathcal{K}$ which equals the largest positive solution of the characteristic equation. Thus we have that
+ $$R_{0Z}^{NG}=\dfrac{R_d+\sqrt{R_d^2+\dfrac{4}{1+C}\left( 1-\dfrac{1}{R}-\dfrac{1}{M}\left(1-\dfrac{R_w}{R}\right)\right)\left(\dfrac{R^{wf}_Z}{1-1/R}+C\dfrac{R^{wi}_Z}{1-1/M}\right)}}{2}.$$
+ 
+ 
+\noindent This reproduction number of Zika in presence of both type of mosquitoes derived by the next-generation approach serves as a threshold condition for the stability of the disease free equilibrium but it is not an easy task to interpret it epidemiologically. From \cite{van2002reproduction} we have:
+
+\begin{theorem}
+If $R_{0Z}^{NG}<1$, the disease free equilibrium $E^{(3)}$ is locally asymptotically stable; otherwise, it is unstable.
+\end{theorem}
+
+\subsection{Zika present and no \textit{Wolbachia} infected mosquitoes present}
+We express all the state variables in terms of $I_h$ and then arrive at an equation in terms of $R_Z$ and $I_h$:
+$$AI^2_h+BI_h+Rb\Lambda^3\mu^3_v(R_Z-1)=0$$ where
+
+\noindent $A=b^2R^2\mu^2_v\Lambda\mu_h\beta_{hv}\left(\dfrac{R_Z/R-R_d}{\nu_h(R-1)}\right)$
+ and 
+\begin{multline*}
+B=-\dfrac{\Lambda^2\beta_{hv}\mu_hR\mu^2_v(bR_Z-\nu_h\beta_{hh})}{(R-1)}-\dfrac{b\Lambda^2 \mu^3_vR(bR_Z-\nu_h\beta_{hh})}{\nu_h}+\\
+     +\beta_{hh}R\mu^2_v\Lambda^2\nu_h\beta_{hv}\mu_h-b\beta_{hh}\mu^3_v\Lambda^2R-bR\mu^2_v\Lambda^2\beta_{hv}\mu_h.
+ \end{multline*}
+Using the Sign of the Derivative Method \cite{martcheva2019methods}, we differentiate the quadratic equation implicitly with respect to $R_Z$ and evaluate at $I_h=0$ and $R_Z=1$, to obtain the following
+$\dfrac{\partial I_h}{\partial R_Z}B_*+Rb\Lambda^3\mu^3_v=0$ where $B_*$ is the coefficient of $I_h$ evaluated at $R_Z=1.$
+
+\noindent Furthermore, calculations give that $B_*=Rb\Lambda^2\mu_v^2\left[\dfrac{\beta_{hv}\mu_hR(R_d-1)}{R-1}-\dfrac{\mu_v(\gamma_h+\mu_h)(\nu_h+\mu_h)}{\nu_h}\right].$
+
+\noindent Solving for the derivative we get 
+    $\dfrac{\partial I_h}{\partial R_Z}
+    =\dfrac{-\Lambda\mu_v\nu_h(R-1)}{\beta_{hv}\mu_h\nu_hR(R_d-1)-\mu_v(\gamma_h+\mu_h)(\nu_h+\mu_h)(R-1)}$ and observe that the derivative is always positive since $R>1$ and $R_d<1$.
+\begin{comment}
+Figure \ref{fig:bbif} shows forward bifurcation at the critical value $R_Z=1$, in which case an endemic equilibrium exists if and only if $R_Z >1$.
+
+\begin{figure}[h]
+\centering
+  \includegraphics[scale=0.4]{forwardbif.png}
+  \caption{Forward bifurcation  at the critical value $R_Z=1$
+  %, in which case there are two endemic equilibria for $R^*_Z<R_Z<1$ and one endemic equilibria if $R_Z\geq 1$
+  }
+  \label{fig:bbif}
+\end{figure}
+\end{comment}
+
+\begin{theorem}
+In presence of wild mosquitoes only the system admits an unique endemic equilibrium, $E^{(4)}$, when $R_Z>1.$
+ 
+ %There is one unique solution when $R_Z>1$.  These 0, 1, or 2 $I_h$ equilibria lead to corresponding equilibria of the model if also $I_h<\dfrac{\Lambda\nu_h}{b}$ and $I_h<\dfrac{\Lambda\mu_v(R-1)}{\beta_{hv}\mu_h}.$
+\end{theorem}
+\subsection{Zika present and no wild mosquitoes present}
+When there is Zika present in the human population and in the mosquito population that is composed of only \textit{Wolbachia} infected mosquitoes we have the following equilibrium point 
+$$E^{(5)}=(S^{(5)}_h,E^{(5)}_h,I^{(5)}_h,R^{(5)}_h,A^{(5)}_{wi},S^{(5)}_{wi},I^{(5)}_{wi},M^{(5)}_{wi},0,0,0,0).$$ 
+Note that we rearranged the system again as it was done in a previous section.
+We express all the state variables in terms of $I_h$ and then arrive at an equation in terms of $R^i_Z$ and $I_h$:
+\begin{multline*}
+I^2_h\left(b^2M^2\mu^2_{vi}\Lambda\mu_h\beta^w_{hv}\left(\dfrac{R^i_Z/M-R_d}{\nu_h(M-1)}\right)\right)+\\ I_h(-\Lambda\beta^w_{hv}\mu_hM\Lambda\mu^2_{vi}\dfrac{(bR^i_Z-\nu_h\beta_{hh})}{(M-1)}-b\Lambda M\Lambda\mu^3_{vi}\dfrac{(bR^i_Z-\nu_h\beta_{hh})}{\nu_h}+\\
+\beta_{hh}\mu^2_{vi}\Lambda^2\nu_hM\mu_h\beta^w_{hv}-b\beta_{hh}\Lambda^2\mu^3_{vi}M-b\Lambda^2\mu^2_{vi}M\mu_h\beta^w_{hv})+
+Mb\Lambda^3\mu^3_{vi}(R^{i}_Z-1)=0
+\end{multline*}
+
+\begin{theorem}
+ In presence of only Wolbachia infected mosquitoes the system admits an unique endemic equilibrium, $E^{(5)}$, when $R^i_Z>1$. 
+\end{theorem}
+\subsection{Zika present and both types of mosquitoes present}
+When there is Zika present in the human population and in the mosquito population that is composed of both \textit{Wolbachia} free and \textit{Wolbachia} infected mosquitoes we have the following equilibrium point 
+   $$E^{(6)}=(S^{(6)}_h,E^{(6)}_h,I^{(6)}_h,R^{(6)}_h,A^{(6)}_{wf},S^{(6)}_{wf},I^{(6)}_{wf},M^{(6)}_{wf},A^{(6)}_{wi},S^{(6)}_{wi},I^{(6)}_{wi},M^{(6)}_{wi}).$$ We will explore this equilibrium using numerical simulations since this equilibrium is too complex to deal with analytically.
+ \subsection{Overview of equilibria}
+ Here is an overview of the equilibria with conditions for existence and stability listed in Table \ref{eqtable}.
+ 
+\noindent $E^{(1)}=\\
+\left(\frac{\Lambda}{\mu_h},0,0,0,K\left(1-\frac{1}{R}\right),\frac{\alpha\gamma_{wf}}{\mu_v}K\left(1-\frac{1}{R}\right),0,\frac{(1-\alpha)\gamma_{wf}}{\mu_v}K\left(1-\frac{1}{R}\right),0,0,0,0\right).$
+
+\noindent $E^{(2)}=\\
+\left(\frac{\Lambda}{\mu_h},0,0,0,K\left(1-\frac{1}{M}\right),\frac{\alpha\gamma_{wi}}{\mu_{vi}}K\left(1-\frac{1}{M}\right),0,\frac{(1-\alpha)\gamma_{wi}}{\mu_{vi}}K\left(1-\frac{1}{M}\right),0,0,0,0\right).$
+ 
+\noindent$E^{(3)}=\\
+\left(\frac{\Lambda}{\mu_h},0,0,0,A^{(3)}_{wf},\frac{\alpha \gamma_{wf}A^{(3)}_{wf}}{\mu_v},0,\frac{(1-\alpha)\gamma_{wf}A^{(3)}_{wf}}{\mu_v},CA^{(3)}_{wf},\frac{\alpha\gamma_{wi}CA^{(3)}_{wf}}{\mu_{vi}},0,\frac{(1-\alpha)\gamma_{wi}CA^{(3)}_{wf}}{\mu_{vi}}\right)$.
+
+\noindent$E^{(4)}=(S^{(4)}_h,E^{(4)}_h,I^{(4)}_h,R^{(4)}_h,A^{(4)}_{wf},S^{(4)}_{wf},I^{(4)}_{wf},M^{(4)}_{wf},0,0,0,0)$.
+
+\noindent$E^{(5)}=(S^{(5)}_h,E^{(5)}_h,I^{(5)}_h,R^{(5)}_h,A^{(5)}_{wi},S^{(5)}_{wi},I^{(5)}_{wi},M^{(5)}_{wi},0,0,0,0)$.
+
+\noindent$E^{(6)}=(S^{(6)}_h,E^{(6)}_h,I^{(6)}_h,R^{(6)}_h,A^{(6)}_{wf},S^{(6)}_{wf},I^{(6)}_{wf},M^{(6)}_{wf},A^{(6)}_{wi},S^{(6)}_{wi},I^{(6)}_{wi},M^{(6)}_{wi})$.
+
+\vspace{0.1in}
+
+Table \ref{eqtable} summarizes the results of the analysis. Besides simulations, no analysis was done for equilibria $E^{(4)}$, $E^{(5)}$ and $E^{(6)}$, hence the n/a values listed in the table.
+\begin{table}[H]
+\centering
+\caption{Overview of equilibria and their conditions for stability:\\
+ DF = Disease free,\\
+ WF = \textit{Wolbachia} free mosquitoes present,\\
+ DP = Disease present, WI = \textit{Wolbachia} infected mosquitoes present.
+} 
+\begin{tabular}{C{1.1cm}  c C{2.25cm} C{2cm} C{2cm} } 
+ \toprule
+ Equilibrium & Description & Existence Conditions & Stability Conditions & Instability Conditions\\ 
+  \midrule
+ $E^{(1)}$ & DF, WF & $R>1$ & $R_w/R<1$, $R_Z <1$ & $R_w/R>1$ or $R_Z>1$ \\ 
+ \midrule
+ $E^{(2)}$ & DF, WI & $M>1$ & $R^i_Z<1$ & $R^i_Z>1$\\ 
+ \midrule
+ $E^{(3)}$ & DF, WF, WI & $R_w/R<1$, $R>1$, $M>1$ & $R_{0Z}<1$ & $R_{0Z}>1$\\ 
+ \midrule
+ $E^{(4)}$ & DP, WF & $R>1$, $R_Z>1$ & n/a & n/a\\ 
+ \midrule
+ $E^{(5)}$ & DP, WI & $M>1$, $R_Z^i>1$ & n/a & n/a\\ 
+ \midrule
+ $E^{(6)}$ & DP, WF, WI & $R>1$,$M>1$  & n/a & n/a\\ 
+ \bottomrule
+\end{tabular}
+\label{eqtable}
+\end{table}
+
+\section{Numerical Simulations}
+\label{simulations}
+
+%\textcolor{blue}{Figure out how to organize and name these sections. Make it more clear what the figures address (what is their purpose, what question they answer) and how you obtained them (what parameters and initial conditions are same/different. You got this!! You did it for an hour. Lets do it for 2 tomorrow :) }
+
+The model is simulated, using the parameter values and ranges from Table \ref{tab: param-table} and Table \ref{tab: param_mosq_table}. We are assuming that there are already some \textit{Wolbachia} infected mosquitoes present and we are trying to determine what ratio of \textit{Wolbachia} infected to \textit{Wolbachia} free mosquitoes should be attained at the time of release of additional \textit{Wolbachia} infected mosquitoes in order to get a desired outcome.
+
+\subsection{Numerical simulation for disease free equilibria}
+
+First, we begin with the disease free equilibria.
+Our goal is to determine under what circumstances \textit{Wolbachia} establishes itself in the wild mosquito population and if it does how does that affect Zika dynamics within the human and mosquito populations.
+
+\subsubsection{\textit{Wolbachia} fails to establish when starting with same amount of wild and \textit{Wolbachia} infected mosquitoes}\label{diseasefreefirst} 
+
+Running simulations using the baseline values for parameters from Table \ref{tab: param-table} and Table \ref{tab: param_mosq_table} and the initial conditions listed in Table \ref{init-cond-dis-free-table}  yields to failure of \textit{Wolbachia} infection to establish itself in the wild mosquito population. Notice that we start with the same amount of wild mosquitoes and \textit{Wolbachia} infected mosquitoes. Also, we chose to start with $2.5$ mil Zika infected humans to emphasize convergence to the disease free equilibrium even for high level of initial infection.
+
+
+\begin{table}[h]
+\centering
+\caption{Initial conditions for disease free simulations
+} 
+\label{init-cond-dis-free-table}
+\begin{tabular}{ c c c c } 
+ \toprule
+ Variable & Initial value & Variable & Initial value\\ 
+  \midrule
+ $S_h(0)$ & 10,000,000 & $I_{wf}(0)$ & 50,000\\
+ $E_h(0)$ & 3,000,000 & $M_{wf}(0)$ & 250,000\\
+ $I_h(0)$ & 2,500,000 & $A_{wi}(0)$ & 500,000 \\
+ $R_h(0)$ & 10,000 & $S_{wi}(0)$ & 250,000 \\
+ $A_{wf}(0)$ & 500,000 & $I_{wi}(0)$ & 50,000 \\
+ $S_{wf}(0)$ & 250,000 & $M_{wi}(0)$ & 250,000\\
+ \bottomrule
+\end{tabular}
+%\label{eqtable}
+\end{table}
+
+Notice in Figure \ref{fig:domwolbachiafree} 
+that \textit{Wolbachia} free mosquitoes persist and the \textit{Wolbachia} infected mosquitoes are eliminated in approximately 200 days. The disease is eradicated in approximately 250 days in both humans and wild mosquitoes. This corresponds to steady state $E^{(1)}$ where wild mosquitoes persists and \textit{Wolbachia} infection fails to establish.
+
+%\begin{figure}[h]
+%    \centering
+    %\hskip-0.75in
+%    \includegraphics[width=16cm,height=4.5cm]{SimFig1.png}
+%    \caption{Dominance of \textit{Wolbachia} free mosquitoes. Figure  obtained using baseline values for parameters from Table \ref{tab: param-table} and Table \ref{tab: param_mosq_table} and the initial conditions listed in Table \ref{init-cond-dis-free-table}}
+%    \label{fig:domwolbachiafree}
+%\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \input{fig/tex/Simulation1}
+    %\makebox[0pt][l]{\input{fig/tex/NonAutSimulation6c_ih}}%
+    %\makebox[0pt][l]{\input{fig/tex/NonAutSimulation6c_iwi}}%
+    \caption{Dominance of \textit{Wolbachia} free mosquitoes. Figure  obtained using baseline values for parameters from Table \ref{tab: param-table} and Table \ref{tab: param_mosq_table} and the initial conditions listed in Table \ref{init-cond-dis-free-table}}
+    \label{fig:domwolbachiafree}
+\end{figure}
+
+\subsubsection{\textit{Wolbachia} is established when more \textit{Wolbachia} infected susceptible females are released}\label{morefemales} 
+
+
+Increasing the amount of \textit{Wolbachia} infected susceptible female mosquitoes can lead to the second steady state, $E^{(2)}$, where \textit{Wolbachia} infected mosquitoes persist and wild mosquitoes are eliminated. 
+More specifically, increasing the initial amount of \textit{Wolbachia} infected females from $S_{wi}(0)=250,000$ to $850,000$ causes the \textit{Wolbachia} infected mosquitoes to persist and the \textit{Wolbachia} free mosquito population to die out in about 330 days. The disease again is eradicated in both humans and wild mosquitoes in approximately 250 days and in 180 days in \textit{Wolbachia} infected mosquitoes as seen in Figure \ref{domiWolbInfFem}.
+
+%\begin{figure}[H]
+    %\hskip-0.75in
+%    \includegraphics[width=16cm,height=4.5cm]{SimFig2.png}
+%    \caption{Dominance of \textit{Wolbachia} infected mosquitoes when we start with more \textit{Wolbachia} infected susceptible females. Figure  obtained using baseline values for parameters from Table \ref{tab: param-table} and Table \ref{tab: param_mosq_table} and the initial conditions listed in Table \ref{init-cond-dis-free-table} with $S_{wi}(0)=850,000$ }
+%    \label{domiWolbInfFem}
+%\end{figure}
+
+\begin{figure}[H]
+    %\hskip-0.75in
+    \centering
+    \input{fig/tex/Simulation2}
+    %\makebox[0pt][l]{\input{fig/tex/NonAutSimulation6c_ih}}%
+    %\makebox[0pt][l]{\input{fig/tex/NonAutSimulation6c_iwi}}%
+    \caption{Dominance of \textit{Wolbachia} infected mosquitoes when we start with more \textit{Wolbachia} infected susceptible females. Figure  obtained using baseline values for parameters from Table \ref{tab: param-table} and Table \ref{tab: param_mosq_table} and the initial conditions listed in Table \ref{init-cond-dis-free-table} with $S_{wi}(0)=850,000$ }
+    \label{domiWolbInfFem}
+\end{figure}
+
+Simulations suggest that one would need to start with approximately 3.4 times as many \textit{Wolbachia} infected females, compared with \textit{Wolbachia} free females in order to allow for the \textit{Wolbachia} infected mosquitoes to establish in the population in roughly around one year. In this case where \textit{Wolbachia} infected mosquitoes persist when we start with more \textit{Wolbachia} infected susceptible female mosquitoes, the sexual transmission component becomes more important than in any other case. If the sexual transmission parameter, $\beta_{hh}$ is set to $0$, the \textit{Wolbachia} infected mosquito population fails to establish itself as seen in Figure \ref{domiWolbInfFemfails}. All other simulations did not change when setting $\beta_{hh}=0$.
+%\textcolor{red}{This figure looks different. Fix}
+%\begin{figure}[H]
+    %\hskip-0.75in
+%    \includegraphics[width=17cm,height=4.5cm]{NoSexualTransmission.png}
+%    \caption{\textit{Wolbachia} infected mosquito population dies when we start with more \textit{Wolbachia} infected susceptible females but sexual transmission is ignored. Figure  obtained using baseline values for parameters from Table \ref{tab: param-table} and Table \ref{tab: param_mosq_table} and the initial conditions listed in Table \ref{init-cond-dis-free-table} with $S_{wi}(0)=850,000$} and $\beta_{hh}=0.$
+%    \label{domiWolbInfFemfails}
+%\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \input{fig/tex/Simulation2_no_sex}
+    \caption{\textit{Wolbachia} infected mosquito population dies when we start with more \textit{Wolbachia} infected susceptible females but sexual transmission is ignored. Figure  obtained using baseline values for parameters from Table \ref{tab: param-table} and Table \ref{tab: param_mosq_table} and the initial conditions listed in Table \ref{init-cond-dis-free-table} with $S_{wi}(0)=850,000$ and $\beta_{hh}=0.$}
+    \label{domiWolbInfFemfails}
+\end{figure}
+
+
+
+These two semitrivial equilibria $E^{(1)}$ and $E^{(2)}$ correspond to the dominance of each type of mosquito. The winner is determined by the initial conditions. So depending on the initial conditions, we have that either \textit{Wolbachia} free mosquitoes persist or \textit{Wolbachia} infected mosquitoes persist as time goes to infinity. 
+
+\subsubsection{\textit{Wolbachia} is established when more \textit{Wolbachia} infected aquatic stage mosquitoes are released \label{moreaquatics}}
+
+The steady state where some mosquitoes carry \textit{Wolbachia} in the long run is the desirable one thus %Since releasing \textit{Wolbachia} infected mosquitoes \textcolor{red}{can be very expensive} and take a long time to implement, 
+it is important to develop mathematical models that suggest the optimal release strategy of \textit{Wolbachia} infected mosquitoes (adults or aquatic stage) in order to drive the mosquito population close to the steady state where only susceptible humans and \textit{Wolbachia} infected mosquitoes exist. As we will see from simulations, there are multiple ways to reach this outcome. We are interested in the release strategy that also allows for the fastest establishment of \textit{Wolbachia} infected mosquitoes.
+
+%There might be a significant cost difference between producing \textit{Wolbachia} infected adult mosquitoes and \textit{Wolbachia} infected aquatic stage mosquitoes.
+
+Field studies have used both approaches of releasing \textit{Wolbachia} infected adult mosquitoes and \textit{Wolbachia} infected aquatic stage mosquitoes with successful outcomes. \textit{Wolbachia} releases are now ongoing or planned in 12 countries \cite{brady2020cost}. Recently, in Indonesia \textit{Wolbachia} carrying mosquitoes were released as eggs using
+mosquito release containers which were 2-litre plastic buckets each containing one oviposition strip with 100–150
+eggs, food, and
+1 litre of water. These containers were covered and placed outside houses,
+protected from direct sun and rain with holes drilled near the top of
+the bucket walls to allow \textit{Wolbachia} infected adult mosquitoes to escape once they eclosed \cite{indriani2020reduced}.
+
+%\textcolor{red}{Remove this sentence? Even though, we do not have specific information about the cost of rearing and releasing \textit{Wolbachia} infected mosquitoes (adults or aquatic stage) or cost of hospitalizations and treatment for humans and thus a rigorous study for the cost of the different releasing strategy is very difficult and not taken into account}. 
+
+We are interested to see whether or not \textit{Wolbachia} infection can be established by releasing \textit{Wolbachia} infected mosquitoes in aquatic stage.  Increasing the initial amount of \textit{Wolbachia} infected aquatic stage from $A_{wi}(0)= 500,000$ to $A_{wi}(0) = 1,850,000$ allows the \textit{Wolbachia} infected mosquito to persist as well as seen in the Figure \ref{fig:my_label}.
+
+\begin{figure}[H]
+    \centering
+    \input{fig/tex/Simulation3}
+    \caption{Dominance of \textit{Wolbachia} infected mosquitoes when we start with more \textit{Wolbachia} infected aquatic stage. Figure obtained using baseline values for parameters from Table \ref{tab: param-table} and Table \ref{tab: param_mosq_table} and the initial conditions listed in Table \ref{init-cond-dis-free-table} with $A_{wi}(0)=1,850,000$ }
+    \label{fig:my_label}
+\end{figure}
+
+%\begin{figure}[H]
+%    \includegraphics[width=16cm,height=4.5cm]{SimFig3.png} 
+%    \caption{Dominance of \textit{Wolbachia} infected mosquitoes when we start with more \textit{Wolbachia} infected aquatic stage. Figure obtained using baseline values for parameters from Table \ref{tab: param-table} and Table \ref{tab: param_mosq_table} and the initial conditions listed in Table \ref{init-cond-dis-free-table} with $A_{wi}(0)=1,850,000$ }
+%    \label{fig:my_label}
+%\end{figure}
+
+Our simulations suggest that one would need to release 3.7 times as many \textit{Wolbachia} infected aquatic stage compared to \textit{Wolbachia} free aquatic stage. The wild mosquitoes are eliminated and the \textit{Wolbachia} infected mosquitoes will establish in a little over 250 days, faster than in the case when more \textit{Wolbachia} infected females are released as seen in section \ref{morefemales}. The disease is completely eradicated in humans and wild mosquitoes in around 230 days, a little earlier than in the case where more \textit{Wolbachia} females were released, and in 180 days in \textit{Wolbachia} infected mosquitoes.
+
+%\textcolor{red}{Should we combine 4 5 and 6 into a paragraph and not include the pictures to reduce the numbers of figures we have?}
+
+\subsubsection{\textit{Wolbachia} is established when more \textit{Wolbachia} infected males are released}
+
+Persistence of \textit{Wolbachia} infected mosquitoes by releasing more \textit{Wolbachia} infected males can be achieved as well, but it requires 5.8 as many \textit{Wolbachia} infected males compared with \textit{Wolbachia} free males which is much higher than the required number of females as seen in section \ref{morefemales}. In Figure \ref{domwolbmales} we observe that increasing the initial amount of \textit{Wolbachia} infected males from $M_{wi}(0) = 250,000$ to $M_{wi}(0) = 1,450,000$ allows the \textit{Wolbachia} infected mosquito population to establish itself in the population of mosquitoes in roughly 250 days, the same amount of time it takes using more aquatic stage mosquitoes as seen in section \ref{moreaquatics}. Disease is again eradicated in approximately 230 days.
+
+\begin{figure}[H]
+    \centering
+    \input{fig/tex/Simulation4}
+    \caption{Dominance of \textit{Wolbachia} infected mosquitoes when starting with more \textit{Wolbachia} infected males. Figure  obtained using baseline values for parameters from Table \ref{tab: param-table} and Table \ref{tab: param_mosq_table} and the initial conditions listed in Table \ref{init-cond-dis-free-table} with $M_{wi}(0)=1,450,000$ }
+    \label{domwolbmales}
+\end{figure}
+
+%\begin{figure}[H]
+    %\hskip-0.75in
+%    \includegraphics[width=16cm,height=4.5cm]{SimFig4.png} 
+%    \caption{Dominance of \textit{Wolbachia} infected mosquitoes when starting with more \textit{Wolbachia} infected males. Figure  obtained using baseline values for parameters from Table \ref{tab: param-table} and Table \ref{tab: param_mosq_table} and the initial conditions listed in Table \ref{init-cond-dis-free-table} with $M_{wi}(0)=1,450,000$ }
+%    \label{domwolbmales}
+%\end{figure}
+
+\subsubsection{\textit{Wolbachia} is established when more \textit{Wolbachia} infected  aquatic stage and females are released simultaneously}
+
+Not surprisingly, a combination of more \textit{Wolbachia} infected aquatic stage and more \textit{Wolbachia} infected females, also allows the \textit{Wolbachia} infected mosquito population to establish itself. In Figure \ref{domwolbaqfem} we notice that if we release twice as many \textit{Wolbachia} infected aquatic stage and 3 times as many \textit{Wolbachia} infected females compared to their \textit{Wolbachia} free counterparts, then the wild mosquitoes population is eliminated and the \textit{Wolbachia} infected mosquitoes persist after roughly 250 days. Disease is again eradicated in approximately 230 days.
+
+\begin{figure}[H]
+    \centering
+    \input{fig/tex/Simulation5}
+    \caption{Dominance of \textit{Wolbachia} infected mosquitoes when we start with more \textit{Wolbachia} infected aquatic stage and more females. Figure  obtained using baseline values for parameters from Table \ref{tab: param-table} and Table \ref{tab: param_mosq_table} and the initial conditions listed in Table \ref{init-cond-dis-free-table} with $A_{wi}(0)=1,000,000$ and $S_{wi}(0)=750,000$.}
+    \label{domwolbaqfem}
+\end{figure} 
+
+%\begin{figure}[H]
+    %\hskip-0.75in
+%    \includegraphics[width=16cm,height=4.5cm]{SimFig5.png}
+%    \caption{Dominance of \textit{Wolbachia} infected mosquitoes when we start with more \textit{Wolbachia} infected aquatic stage and more females. Figure  obtained using baseline values for parameters from Table \ref{tab: param-table} and Table \ref{tab: param_mosq_table} and the initial conditions listed in Table \ref{init-cond-dis-free-table} with $A_{wi}(0)=1,000,000$ and $S_{wi}(0)=750,000$.}
+%    \label{domwolbaqfem}
+%\end{figure} 
+
+\subsubsection{\textit{Wolbachia} is established when more \textit{Wolbachia} infected  aquatic stage and males are released simultaneously}\label{moreaqmale}
+
+Similarly, a combination of aquatic stage mosquitoes and male mosquitoes works as well. If twice as many \textit{Wolbachia} infected aquatic stage is released and 4.4 as many times \textit{Wolbachia} infected males the same outcome is achieved. The \textit{Wolbachia} infected mosquito population establishes itself in 250 days in this case as seen in Figure \ref{domwolbaqmales}. Disease is again eradicated in approximately 230 days.
+\begin{figure}[H]
+    \centering
+    \input{fig/tex/Simulation6}
+    \caption{Dominance of \textit{Wolbachia} infected mosquitoes when we start with more \textit{Wolbachia} infected aquatic stage and more males. Figure  obtained using baseline values for parameters from Table \ref{tab: param-table} and Table \ref{tab: param_mosq_table} and the initial conditions listed in Table \ref{init-cond-dis-free-table} with $A_{wi}(0)=1,000,000$ and $S_{wi}(0)=1,100,000$.}
+    \label{domwolbaqmales}
+\end{figure}
+
+%\begin{figure}[H]
+    %\hskip-0.75in
+%    \includegraphics[width=16cm,height=4.5cm]{SimFig6.png}
+%    \caption{Dominance of \textit{Wolbachia} infected mosquitoes when we start with more \textit{Wolbachia} infected aquatic stage and more males. Figure  obtained using baseline values for parameters from Table \ref{tab: param-table} and Table \ref{tab: param_mosq_table} and the initial conditions listed in Table \ref{init-cond-dis-free-table} with $A_{wi}(0)=1,000,000$ and $S_{wi}(0)=1,100,000$.}
+%    \label{domwolbaqmales}
+%\end{figure}
+
+This strategy of releasing a combination of both types of mosquito stages (aquatic  and adults) might be a better choice since one can survey the land to estimate the number of wild aquatic stage. Also, since the hatching rate of the aquatic stage depends on environmental parameters such as humidity, precipitation and temperature, introducing adults can offset the unhatched aquatic stage. 
+
+As seen in sections \ref{morefemales} - \ref{moreaqmale} \textit{Wolbachia} establishment can be achieved by different release strategies. The establishment takes roughly around one year in all scenarios, but the disease takes longer to be eradicated when \textit{Wolbachia} infected susceptible females are released when compared to all other strategies.
+%\textcolor{red}{I can move that paragraph here saying we don't have cost info.---
+%One would have to take into account the production cost of different release strategies to decide on the optimal strategy.} 
+
+Fore realistic parameters values, we have not been able to find a situation in which both types of mosquitoes coexist. This suggests that for realistic parameter values the two mosquito populations are in a competitive-exclusion regime where only one of the species will persist. These results are consistent with other models that have considered complete cytoplasmic incompatibility and perfect maternal transmission such as \cite{hughes2013modelling}, \cite{koiller2014aedes} and \cite{qu2018modeling}. Incomplete cytoplasmic  incompatbility refers to when a fraction of the offspring resulting from \textit{Wolbachia} infected males with \textit{Wolbachia} free females survives. Incomplete CI and imperfect maternal transmission are two mechanisms by which \textit{Wolbachia} free offspring are produced. Therefore models that include incomplete CI and/or imperfect maternal transmission of \textit{Wolbachia} can observe a coexistence equilibrium.   For example, in \cite{qu2018modeling} the authors consider both cases when the maternal transmission of \textit{Wolbachia} is perfect and imperfect. In the case where they consider imperfect maternal transmission, there is no complete \textit{Wolbachia} infected equilibrium achieved but two endemic equlibria: a high-infection stable endemic equilibrium and a low-infection unstable endemic equilibrium.
+Also in \cite{ndii2015modelling} the results indicate that when incomplete cytoplasmic incompatibility and imperfect maternal transmission is taken into account four steady
+states that are biologically feasible are observed: all mosquitoes dying out, only \textit{Wolbachia} free
+mosquitoes surviving, and two steady states where \textit{Wolbachia} free and \textit{Wolbachia} infected
+mosquitoes coexist. The stability of the coexistence steady states is analyzed numerically with only one of them being physically realistic stable steady state.
+%page 15 of qumodeling
+%page7Ndii
+%\textcolor{blue}{As suggested by the reviewers, the absence of coexistence is common with \textit{Wolbachia} models and often depends on on assumptions such as complete CI.} 
+
+
+\subsection{Numerical Simulations for Disease Present Equilibria}
+In this section we perform numerical simulations for the model when the disease is endemic. 
+The initial conditions used for the simulations are given in Table \ref{init-cond-dis-present-table}. Notice that we assume that we start with no Zika infected \textit{Wolbachia} females. We again use the baseline values from Table \ref{tab: param-table} and Table \ref{tab: param_mosq_table}  with two changes. First, the biting rate of the mosquitoes is set to the higher end of the range $b=1.25$, and second the carrying capacity of the aquatic stage is set to $K=10^9$. 
+
+\begin{table}[H]
+\centering
+\caption{Initial conditions for disease present simulations
+} 
+\label{init-cond-dis-present-table}
+\begin{tabular}{ c c c c} 
+ \toprule
+ Variable & Initial value & Variable & Initial value\\ 
+  \midrule
+ $S_h(0)$ & 8,000,000 & $I_{wf}(0)$ & 50,000\\
+ $E_h(0)$ & 1,000,000 & $M_{wf}(0)$ & 250,000\\
+ $I_h(0)$ & 900,000 & $A_{wi}(0)$ & 500,000 \\
+ $R_h(0)$ & 100,000 & $S_{wi}(0)$ & 250,000 \\
+ $A_{wf}(0)$ & 2,500,000 & $I_{wi}(0)$ & 0 \\
+ $S_{wf}(0)$ & 250,000 & $M_{wi}(0)$ & 250,000\\
+ \bottomrule
+\end{tabular}
+\end{table}
+\subsubsection{Zika is present but \textit{Wolbachia} infection is not established \label{disfirst}}
+When the biting rate of the mosquitoes and the carrying capacity of the aquatic environment is set to the higher end of their range we get that the disease is endemic as we can see in Figure \ref{e4allnice}.  Zika persists both in humans and wild mosquitoes, and the \textit{Wolbachia} infected mosquitoes are eliminated in 400 days. The peak of infected humans infected with Zika is reached in 25 days with approximately 1.8 million infected humans. Zika stays endemic in humans with 3,500 infected humans  and in the \textit{Wolbachia} free mosquitoes with approximately 2.4 mil Zika infected wild mosquitoes.
+
+\begin{figure}[H]
+\centering
+    \input{fig/tex/Simulation6a_main}
+    \makebox[0pt][l]{\input{fig/tex/Simulation6a_ih}}%
+    \makebox[0pt][l]{\input{fig/tex/Simulation6a_iwf}}%
+    \makebox[0pt][l]{\input{fig/tex/Simulation6a_iwi}}%
+\caption{Endemic Zika in humans and \textit{Wolbachia} free mosquitoes. Figure is obtained using initial conditions given in Table \ref{init-cond-dis-present-table} and baseline values from Table \ref{tab: param-table} and Table \ref{tab: param_mosq_table}  with two changes($b=1.25$, $K=10^9$)}
+\label{e4allnice}
+\end{figure}
+
+%\begin{figure}[H]
+%\hskip-0.5in
+%\includegraphics[width=16cm,height=4.5cm]{NewModel6.png}
+%\caption{Endemic Zika in humans and \textit{Wolbachia} free mosquitoes. Figure is obtained using initial conditions given in Table \ref{init-cond-dis-present-table} and baseline values from Table \ref{tab: param-table} and Table \ref{tab: param_mosq_table}  with two changes($b=1.25$, $K=10^9$)}
+%\label{e4allnice}
+%\end{figure}
+
+\subsubsection{Zika is eradicated when \textit{Wolbachia} infection is established }\label{dissecond}
+If we allow for the \textit{Wolbachia} infected mosquitoes to establish in the wild mosquito population we get that the disease is eradicated.  
+We keep the same parameters as in section \ref{disfirst} and change only the initial condition from $A_{wf}(0)= 2,500,000$ to $A_{wf}(0)=500,000$ and $A_{wi}(0)=500,000$ to  $A_{wi}(0)=1,500,000$ we can see in Figure \ref{wpe4} that the \textit{Wolbachia} infected mosquitoes persist and the disease is eradicated in humans and wild mosquitoes in around 300 days. Zika is eradicated in \textit{Wolbachia} infected mosquitoes in around 380 days. The peak of 1 million Zika infected humans is reached in 40 days. In the field this would corresponds to a strategy of decreasing the number of breeding sites of wild mosquitoes before releasing \textit{Wolbachia} infected aquatic stage.
+
+\begin{figure}[H]
+\centering
+    \input{fig/tex/Simulation6b_main}
+    \makebox[0pt][l]{\input{fig/tex/Simulation6b_ih}}%
+    \makebox[0pt][l]{\input{fig/tex/Simulation6b_iwf}}%
+    \makebox[0pt][l]{\input{fig/tex/Simulation6b_iwi}}%
+\caption{Disease dies out when \textit{Wolbachia} mosquitoes persist. Figure is obtained using initial conditions given in Table \ref{init-cond-dis-present-table} with two changes ($A_{wf}(0)=500,000$, $A_{wi}(0)=1,500,000$)  and baseline values from Table \ref{tab: param-table} and Table \ref{tab: param_mosq_table}  with two changes( $b=1.25$ and $K=10^9$)}
+\label{wpe4}
+\end{figure}
+   
+%\begin{figure}[H]
+%\centering
+%\hskip-0.75in
+%\includegraphics[width=16cm, height=4.5cm]{NewModel6b.png}
+%\caption{Disease dies out when \textit{Wolbachia} mosquitoes persist. Figure is obtained using initial conditions given in Table \ref{init-cond-dis-present-table} with two changes ($A_{wf}(0)=500,000$, $A_{wi}(0)=1,500,000$)  and baseline values from Table \ref{tab: param-table} and Table \ref{tab: param_mosq_table}  with two changes( $b=1.25$ and $K=10^9$)}
+%\label{wpe4}
+%\end{figure}
+
+\subsubsection{Zika is present and \textit{Wolbachia} infection is established when \textit{Wolbachia} infected vectors are more competent}\label{disthird}
+In this section we are interested to see if Zika can stay endemic even when \textit{Wolbachia} infection is established. In order to investigate this we keep the same initial conditions as in section \ref{dissecond}, same parameters values as in section \ref{disfirst} with the change that we
+increase the competence of \textit{Wolbachia} infected mosquitoes $\beta_{hv}^w=0.042\beta_{hv}$ to $\beta_{hv}^w=0.042\beta_{hv}$.  We notice in Figure \ref{sim6c} that in this case  the \textit{Wolbachia} infected mosquito population persists and the disease persists in both humans and \textit{Wolbachia} infected mosquitoes. The wild mosquito population is eliminated in around 330 days. The number of Zika infected humans reach a peak of 1.8 million in around 35 days and then settle to around 3,500. As we can see in Figure \ref{sim6c} even though the decrease in the number of Zika infected \textit{Wolbachia} infected mosquitoes is very substantial (from 2.4 millions to around 850,000) the impact in humans seems very minimal.
+
+\begin{figure}[H]
+\centering
+    \input{fig/tex/Simulation6c_main}
+    \makebox[0pt][l]{\input{fig/tex/Simulation6c_ih}}%
+    \makebox[0pt][l]{\input{fig/tex/Simulation6c_iwf}}%
+    \makebox[0pt][l]{\input{fig/tex/Simulation6c_iwi}}%
+    \caption{Disease persists when \textit{Wolbachia} mosquitoes are more competent. Figure is obtained using initial conditions given in Table \ref{init-cond-dis-present-table} with two changes ($A_{wf}(0)=500,000$, $A_{wi}(0)=1,500,000$)  and baseline values from Table \ref{tab: param-table} and Table \ref{tab: param_mosq_table}  with three changes($b=1.25$, $K=10^9$, $\beta_{hv}^w=0.042\beta_{hv}$)}
+    \label{sim6c}
+\end{figure}
+
+%\begin{figure}[H]
+%    \centering
+    %\hskip-0.75in
+%    \includegraphics[width=16cm,height=4.5cm]{NewModel6c.png}
+%    \caption{Disease persists when \textit{Wolbachia} mosquitoes are more competent. Figure is obtained using initial conditions given in Table \ref{init-cond-dis-present-table} with two changes ($A_{wf}(0)=500,000$, $A_{wi}(0)=1,500,000$)  and baseline values from Table \ref{tab: param-table} and Table \ref{tab: param_mosq_table}  with three changes($b=1.25$, $K=10^9$, $\beta_{hv}^w=0.042\beta_{hv}$)}
+%    \label{sim6c}
+%\end{figure}
+
+
+Thus, if the carrying capacity of the environment is large enough and the mosquito biting rate is high, Zika can be endemic in the human population and in wild mosquitoes. If \textit{Wolbachia} infected mosquitoes persist, Zika is eradicated. However, if \textit{Wolbachia} infected mosquitoes lose some of their ability to block Zika virus (due to loss of \textit{Wolbachia} or higher temperatures), Zika can become endemic even when \textit{Wolbachia} infected mosquitoes dominate.
+
+\section{Elasticity of the Reproduction numbers}
+
+In this section we investigate the model dynamics over a wide range of feasible parameters to help better understand the model response under different assumptions.  More specifically, we explore the elasticity of the reproduction numbers. Below is a list of all the reproduction numbers.
+The elasticity of a quantity $Q$ with respect to a parameter $p$ is given by
+$$\epsilon_p^Q=\dfrac{\partial Q}{\partial p}\dfrac{p}{Q}.$$ 
+
+\noindent The elasticities give the percentage change in the quantity $Q$ due to a $1\%$ increase the in the parameter $p$ \cite{martcheva2015introduction}. We will investigate how the reproduction numbers from the model change in response to $1\%$ increase in various parameters. 
+
+Here is a summary of all the reproduction numbers: 
+\begin{itemize}
+    \item $R=\dfrac{\eta \alpha (1-\alpha)\gamma_{wf}}{\mu_v (\gamma_{wf}+\mu_A)}$ is the offspring reproduction number of wild mosquitoes.
+    \item $R_w=\dfrac{q_2\alpha(1-\alpha)\gamma_{wi}}{\mu_{vi}(\gamma_{wi}+\mu_{Ai})}$ is the invasion number of \textit{Wolbachia} infected mosquitoes in absence of disease.
+    \item $R_Z=R^{wf}_Z+R_d$ is the reproduction number of Zika in absence of \textit{Wolbachia} infected mosquitoes where $R^{wf}_Z=\dfrac{\nu_h\beta_{vh}\beta_{hv}\alpha\mu_h\gamma_{wf}}{\Lambda\mu^2_v(\mu_h+\nu_h)(\gamma_h+\mu_h)}K\left(1-\dfrac{1}{R}\right)$ and $R_d=\dfrac{\nu_h\beta_{hh}}{(\mu_h+\nu_h)(\gamma_h+\mu_h)}$.
+    \item $M=\dfrac{q_1 \alpha (1-\alpha)\gamma_{wi}}{\mu_{vi} (\gamma_{wi}+\mu_{Ai})}$is the offspring reproduction number of \textit{Wolbachia} infected mosquitoes.
+    \item $R^i_Z=R^{wi}_Z+R_d$ is the reproduction number of Zika in absence of \textit{Wolbachia} free mosquitoes where  $R^{wi}_Z=\dfrac{\beta^w_{vh}\beta^w_{hv}\nu_h\alpha \mu_h\gamma_{wi}}{\Lambda \mu^2_{vi}(\mu_h+\nu_h)(\gamma_h+\mu_h)}K\left(1-\dfrac{1}{M}\right).$
+    \item $R_{0Z}^{NG}=\dfrac{R_d+\sqrt{R_d^2+\dfrac{4}{1+C}\left( 1-\dfrac{1}{R}-\dfrac{1}{M}\left(1-\dfrac{R_w}{R}\right)\right)\left(\dfrac{R^{wf}_Z}{1-1/R}+C\dfrac{R^{wi}_Z}{1-1/M}\right)}}{2}$ is the reproduction number of Zika in presence of both types of mosquitoes where 
+    
+    $q=\dfrac{1}{1+C}\left( 1-\dfrac{1}{R}-\dfrac{1}{M}\left(1-\dfrac{R_w}{R}\right)\right)\left(\dfrac{R^{wf}_Z}{1-1/R}+C\dfrac{R^{wi}_Z}{1-1/M}\right)$ and $C=\dfrac{\gamma_{wf}\mu_{vi}R}{\eta\gamma_{wi}\mu_vM}\left(1-\dfrac{R_w}{R}\right).$
+ \end{itemize}   
+    \vspace{0.2in}
+    We begin with the elasticity of the reproduction offspring numbers of the mosquitoes $R$, $M$ and $R_w$. Looking through Figure \ref{elast2}, we can observe some common trends. All of the mosquitoes offspring numbers, $R$, $M$, $R_w$ are most sensitive to the mosquito death rates, $\mu_v$ and $\mu_{vi}$ and to the corresponding mosquito egg laying rates $\eta$, $q_1$ and $q_2$.
+    
+    The elasticity of the offspring numbers to the death rate of the mosquito are approximately $1\%$, meaning that $1\%$ increase in the parameter results in $1\%$ decrease in the offspring numbers. The elasticity of the offspring numbers to the  to the egg laying rates are also approximately $1\%$, meaning that $1\%$ increase in the parameter results in $1\%$ increase in the offspring numbers.  
+    This suggests that measures to control the population of mosquitoes should be targeted towards decreasing the lifespan of the mosquitoes and decreasing the egg laying rates. The offspring numbers are not sensitive at all to the proportion of adult females arising from the aquatic stage, $\alpha$. Also, the transition rate from aquatic stage to adult mosquito, $\gamma_{wi}$, and the death rate of the aquatic stage, $\mu_{Ai}$, are more influential for the \textit{Wolbachia} infected mosquitoes. As we can observe in Figures \ref{elast2} b) and \ref{elast2} c) the reproduction offspring numbers $M$ and $R_w$ are more sensitive to $\gamma_{wi}$ and $\mu_{Ai}$ compared to the sensitivity of the reproduction offspring number $R$ with respect to $\gamma_{wf}$ and $\mu_{A}$.
+
+ \begin{figure}[H]%
+    \centering
+    %\hskip-0.25in
+    \subfloat[Elasticity of R]{{\includegraphics[width=4.5cm]{fig/eps/ER.eps} }}%
+    %\label{elastR}
+    \qquad
+    \subfloat[Elasticity of M]{{\includegraphics[width=4.5cm]{fig/eps/EM.eps} }}%
+     %\label{elastM}
+    \qquad
+    \subfloat[Elasticity of $R_w$]{{\includegraphics[width=4.5cm]{fig/eps/ERw.eps} }}%
+     %\label{elastRw}
+    \qquad
+    \caption{Elasticities of the reproduction offspring numbers}
+    \label{elast2}
+\end{figure} 
+
+Next, we investigate the elasticity of the reproduction numbers of Zika in presence of only one type of mosquitoes. In Figure \ref{fig:elasticities3} (a) we notice that the reproduction number of Zika in absence of \textit{Wolbachia} infected mosquitoes, $R_Z$, is most sensitive to the mosquito death rate, $\mu_v$, and somewhat sensitive to $\gamma_h$, $\beta_{vh}$, $\beta_{hv}$, $K$ and $\gamma_{wf}.$ On the other hand, the reproduction number $R_Z$ is not sensitive at all to $\nu_h$ and depends very little on $\beta_{hh}$, the direct transmission parameter.    
+Figure \ref{fig:elasticities3} (b) shows the elasticities of $R_{Zi}$, the reproduction number of Zika in absence of \textit{Wolbachia} free mosquitoes. 
+%In the presence of \textit{Wolbachia} infected only mosquitoes it appears that all other control mechanisms are much less influential except for the treatment of humans. That suggests that the presence of \textit{Wolbachia} infected mosquitoes actually does contribute to control in some sense. It makes all others types of control less influential. 
+Notice that treatment of humans and controlling the sexual transmission are most influential because of the high elasticity of $\gamma_h$ and $\beta_{hh}$  parameters. That suggests that the presence of \textit{Wolbachia} infected mosquitoes changes the way Zika must be controlled making mosquito control less important.
+$R_{Zi}$ shows very little sensitivity to the death rate of mosquitoes, meaning that killing the \textit{Wolbachia} infected mosquitoes is not a good control strategy. Also, in the presence of \textit{Wolbachia} infected mosquitoes we see more sensitivity to the direct transmission parameter.
+\begin{figure}[H]%
+    \centering
+    %\hskip-0.5in
+    \subfloat[$R_Z$]{{\includegraphics[width=0.45\columnwidth]{fig/eps/ERz.eps} }}%
+    \qquad
+    \subfloat[$R_z^{i}$]{{\includegraphics[width=0.45\columnwidth]{fig/eps/ERzii.eps} }}%
+    \qquad
+    \subfloat[$R^{NG}_{0Z}$]{{\includegraphics[width=0.45\columnwidth]{fig/eps/ER0Rs.eps} }}%
+    \caption{Elasticities of reproduction numbers of Zika in presence of one type of mosquito and in presence of both types of mosquitoes with respect to other reproduction numbers.}
+    \label{fig:elasticities3}%
+\end{figure} 
+  
+The elasticity of the reproduction number of Zika in presence of both types of mosquitoes with respect to other offspring/reproduction numbers is investigated next. As we notice in Figure \ref{fig:elasticities3} (c) the reproduction number in presence of both types of mosquitoes,$R^{NG}_{0Z}$, is most sensitive to $R_z^{wf}$, the reproduction number in absence of \textit{Wolbachia} infected mosquitoes. A $1\%$ increase in $R_z^{wf}$ results in a $0.32\%$ increase in $R^{NG}_{0Z}$.
+%\begin{figure}[H]%
+%    \centering
+%    \hskip-0.55in
+%    \subfloat{{\includegraphics[width=4.5cm]{ER0Rs.png} }}%
+%    \qquad
+%    \caption{Elasticity of $R^{NG}_{0Z}$, Zika reproduction number is presence of both types of mosquitoes with respect to other reproduction numbers}
+%    \label{fig:elasticitiesrs}%
+%\end{figure} 
+Lastly, we investigate the elasticity of the reproduction number of Zika in presence of both types of mosquitoes with respect to  parameters in Figure \ref{fig:elasticities4}. In terms of parameters, $R^{NG}_{0Z}$ is most sensitive again to the death rate of the \textit{Wolbachia} free mosquitoes and the direct transmission. A $1\%$ increase in $\beta_{hh}$ results in a $3.358\%$ increase in $R^{NG}_{0Z}$. We notice again that in the presence of \textit{Wolbachia} infected mosquitoes, the direct transmission becomes somewhat more influential. This might be happening due to the fact that \textit{Wolbachia} infected mosquitoes have a lower transmission rate. Parameters related to the vector-borne transmission in \textit{Wolbachia} free mosquitoes are also influential.
+\begin{figure}[H]%
+    \centering
+    \includegraphics[width=0.95\columnwidth]{fig/eps/ER0Param.eps}%
+    \caption{Elasticity of $R_{0Z}^{NG}$, Zika reproduction number in presence of both types of mosquitoes with respect to parameters}
+    \label{fig:elasticities4}%
+\end{figure} 
+
+The presence of \textit{Wolbachia} infected mosquitoes switches the control strategies. When no \textit{Wolbachia} infected mosquitoes are present the control should be targeted towards decreasing the lifespan of the mosquitoes and when \textit{Wolbachia} infected mosquitoes are present the efforts should be concentrated on treatment of humans to increase the recovery rate and sexual transmission control to decrease the direct transmission rate.
+
+\section{Non-autonomous model simulations}
+%\begin{comment}
+%Since the transmission of Zika virus is affected by periodic seasonality, it is worth further exploring how temperature fluctuations affect the dynamics of Zika transmission periodically. 
+%The impact of climate variability on vectorborne diseases can be explained by the fact that the arthropod vectors of these diseases are cold-blooded. This means that  fluctuating temperatures and rainfall can impact the development, reproduction (including availability of breeding sites), behavior and population dynamics of mosquitoes \cite{gage2008climate}.
+%However, this impact cannot be easily predicted.  Concluding that higher temperatures and increased rainfall will lead to increased transmission of arboviral diseases must be accompanied by a more careful and thoughtful analysis of the interplay between climate and human behavior \cite{sutherst2004global}. For example, extremely high temperatures can increase mosquito mortality \cite{reeves1994potential} and 
+%heavy rainfall can wash out mosquito breeding sites \cite{reiter2001climate}. Also, during hot weather humans may seek refuge in air-conditioned buildings and thus avoiding mosquito bites \cite{reiter2003texas}. During dry season, domestic water storage container can provide more breeding sites for \textit{Aedes aegypti} mosquitoes and thus causing the incidence of the diseases they transmit to rise \cite{chretien2007drought}. 
+
+% We are not going to include in the model the fat that temperature also affect vectorial capacity so no need to mention this?
+%Temperature also can affect pathogen development within vectors and interact with humidity to influence vector survival and, hence, vectorial capacity.
+
+%\textit{Aedes aegypti} mosquitoes originated from Africa, but now they are present in tropical, subtropical and temperate zones throughout the world. Large portions of the Americas, including the southernmost part of the eastern United States, the Caribbean, Central America, and lower elevation areas in Mexico and South America, have warm and humid climates well suited for proliferation of \textit{Aedes aegypti} \cite{world2009dengue}. 
+%The lower temperature limit for \textit{Aedes aegypti} is around $10^{\circ}$ C, a temperature below which mosquitoes become inactive and unable to move. However, the  lower temperature limit at which female \textit{Aedes aegypti} has been found to cease biting is $15^{\circ}$C, both in the field and experimentally in the lab \cite{marchoux1903fievre}. 
+%\textit{Aedes aegypti} are most active at $28^{\circ}$C \cite{connor1924suggestions} and females fed faster between $26^{\circ}$C and $35^{\circ}$C \cite{marchoux1903fievre}. The upper temperature limit for blood-feeding is above $36^{\circ}$C, and the mosquitoes die at $40^{\circ}$C \cite{christophers1960aedes}.
+%CDC has updated the estimated range map for \textit{Aedes aegypti} by using county-level records along with historical records \cite{centers2018estimated}. According to CDC, the US regions where these mosquitoes can be found are expanding to include regions with more temperate climate rather than just subtropical or tropical climate \cite{centers2018estimated}. Thus it is important to investigate the effects of seasonality when the releasing of \textit{Wolbachia} infected mosquitoes spans multiple seasons. 
+%\end{comment}
+
+In this section we study the effects of seasonal variations on the spread of Zika and \textit{Wolbachia} infection. Since the mosquito population varies periodically, we introduce a seasonal variation into the birth rates, transitioning rates and death rates of mosquitoes. The egg laying rates are not constant any more. We assume $\eta(t)$, $q_1(t)$, $q_2(t)$ to be periodically forced. These periodic functions will take larger values during the wet season and smaller values during the dry season. In particular, we take the egg laying rate of \textit{\textit{Wolbachia}} free females to have the form
+$\eta(t)=11\sin\left(2\pi(t-91)/365\right)+13$. This function assumes a 365-day period and has an amplitude of 11, vertical shift of 13 and phase shift of 91 days. Notice that the choice of this simple sinusoidal function assures that $\eta(t)\geq 0$ for all time. Similarly, the egg laying rates of \textit{Wolbachia} infected females when mating with wild males, $q_1(t)$, and when mating with \textit{Wolbachia} infected males, $q_2(t)$, have the following form $q_1(t)=q_2(t)=9\sin\left(2\pi(t-91)/365\right)+11$. The lower amplitude and vertical shift ensure that \textit{Wolbachia} infected females lay fewer eggs.
+
+The periodic death rate of wild mosquitoes has the form $\mu_v=0.035\sin\left(2\pi t/365-91(1.0172)\right)+0.061$. The amplitude is chosen to be 0.035, the average of the range found in literature for the death rate of \textit{Aedes aegypti} mosquitoes, and the vertical shift is chosen to 0.061, the baseline value used in the first model with no seasonality. Similarly, the periodic death rates of \textit{Wolbachia} infected mosquitoes is chosen to have the form $\mu_{vi}=0.055\sin\left(2\pi t/365-91(1.0172)\right)+0.068$ where the higher amplitude and vertical shift accounts for the higher death rate of \textit{Wolbachia} infected mosquitoes. As we can observe in Figure \ref{fig:birthdeath}, in the months with higher temperatures, the conditions are good for the mosquitoes to thrive and multiply and the death rates are lower. 
+
+%\begin{figure}[H]
+%\begin{subfigure}{.5\textwidth}
+%\centering
+%\includegraphics[scale=0.35]{seasetaseasonality_birth.png}
+%\end{subfigure}
+%\begin{subfigure}{.5\textwidth}
+%\centering
+%\includegraphics[scale=0.35]{seasetaseasonality_death.png}
+%\end{subfigure}
+%\caption{Seasonality of birth and death rates.}
+%\label{fig:birthdeath}
+%\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \input{fig/tex/seasetanew_seasonality_birth} \
+    \input{fig/tex/seasetanew_seasonality_death} \ 
+    \input{fig/tex/seasetanew_seasonality_trans}
+    \caption{Seasonality of rates.}
+\label{fig:birthdeath}
+\end{figure}
+
+The temperature of the environment also affects on how the immature stages of \textit{Aedes aegypti} mosquitoes develop. The lower temperature threshold for immature stages to develop is $16^{\circ}$C, while $34^{\circ}$C is the upper limit \cite{christophers1960aedes}. The development time from the aquatic stage to adults was shorter at higher temperatures ($30^{\circ}$ C vs. $21^{\circ}$C) and density and food availability played an important role.  The time taken by larvae to complete their development was optimal at $32^{\circ}$C and that mortality was significant at $14^{\circ}$C and $38^{\circ}$C \cite{bar1958effect}. 
+The highest temperature at which development fully occurred was $36 ^{\circ}$C. Immature stages were found to survive short exposure to temperatures up to $45^{\circ}$C \cite{bar1957effect}. Thus, it is important to assume that the transitioning rates from aquatic stage to adult are periodic. 
+
+We let $\gamma_{wf}$ and $\gamma_{wi}$ to have the following form $\gamma_{wf}=\gamma_{wi}=0.1\sin\left(2\pi(t-91)/365\right)+0.12$.
+
+%\begin{figure}[H]
+%    \centering
+%    \includegraphics[scale=0.4]{seasetaseasonality_trans.png}
+%    \caption{Seasonality of transitioning rates}
+%    \label{fig:transrates}
+%\end{figure}
+
+As seen in Figure \ref{fig:birthdeath} the transitioning rates have a similar shape as the egg laying rates with an amplitude of 0.1 which is the average of the range of values for the transitioning rates found in literature.  Even tough \textit{Wolbachia} infected aquatic stage might take slightly longer to develop compared to wild mosquitoes, the change is so small that we allow both transitioning rates (wild and \textit{Wolbachia} infected) to have the same form.
+
+When we allow for the egg laying rates, death rates and transitioning rates to depend explicitly on time, the model becomes nonautonomous. Nonautonomous models are harder to analyze theoretically, so we will only perform numerical simulations for the nonautonoums model. Our goal is to get some insight on how the seasonality of the rates affects \textit{Wolbachia} spread and diseases dynamics when we simulate over a span of 3 years.
+
+\subsection{Disease free simulations for nonautonomous model}
+The nonautonomous model is simulated using periodicity for the egg laying rates, transitioning rates from aquatic stage to adults and for death rates. All other parameters remain constant and the initial conditions stay the same as in Section \ref{diseasefreefirst}. When the parameters that remain constant take the baseline values from Table \ref{tab: param-table} and Table \ref{tab: param_mosq_table} and the periodic parameters take the form mentioned earlier, we illustrate the effect of the introduction of \textit{Wolbachia} infected mosquitoes through numerical simulations. The initial conditions used are the same as in \ref{diseasefreefirst} and listed in Table \ref{init-cond-dis-free-table}.
+
+\subsubsection{Zika takes longer to be eradicated when seasonality is included }
+As we see in Figure \ref{nonautfig1}, \textit{Wolbachia} free mosquitoes persist and the disease is eradicated in both humans and mosquitoes in approximately in 350 days, a little longer than in the case where seasonality was not taken into account. \textit{Wolbachia} free female mosquitoes population oscillates between 500,000 and 1,750,000 compared to settling around 900,000 in the non-seasonal scenario. 
+
+\begin{figure}[H]
+    \centering
+    \input{fig/tex/NonAutSimulation1}
+    \caption{Dominance of wild mosquitoes when initial conditions are the same as in Table \ref{init-cond-dis-free-table}}
+    \label{nonautfig1}
+\end{figure}
+
+%\begin{figure}[H]
+%    \hskip-0.75in
+%    \includegraphics[width=\textwidth]{NonAutSimulation1.png}
+%    \caption{Dominance of wild mosquitoes when initial conditions are the same as in Table \ref{init-cond-dis-free-table}}
+%    \label{nonautfig1}
+%\end{figure}
+
+\subsubsection{\textit{Wolbachia} needs a higher threshold value to establish under seasonality }
+Changing the initial conditions exactly like we did in Section \ref{morefemales} does not cause the \textit{Wolbachia} infected mosquitoes to persist. In the case where all parameters were constant, changing the initial amount of \textit{Wolbachia} infected susceptible female mosquitoes from $S_{wi}(0)=250,000$ to $S_{wi}(0)=850,000$ allowed the \textit{Wolbachia} mosquitoes to persist. In the case where seasonality was taken into account, numerical simulations suggest that one would need to increase the \textit{Wolbachia} infected susceptible female mosquitoes to $S_{wi}(0)=1.85$ millions to allow for \textit{Wolbachia} infected mosquitoes to persist as observed in Figure \ref{nonautfig2}. The elimination of wild mosquitoes takes around one year with seasonality taken into account and without seasonality. However, with seasonality, the number of \textit{Wolbachia} infected susceptible females oscillates yearly, with 2,750,000 females during the warm seasons compared to 800,000 \textit{Wolbachia} infected females without seasonality. Also, in the case of seasonality it takes a little longer for Zika to be eradicated in both humans and mosquitoes (around 300 days).
+
+\begin{figure}[H]
+    \centering
+    \input{fig/tex/NonAutSimulation2}
+    \caption{Dominance of \textit{Wolbachia} infected mosquitoes when we start with 7.4 times as many \textit{Wolbachia} infected susceptible females compared to wild susceptible females}
+    \label{nonautfig2}
+\end{figure}
+
+%\begin{figure}[H]
+    %\hskip-0.75in
+ %   \includegraphics[width=\textwidth]{NonAutSimulation2.png}
+ %   \caption{Dominance of \textit{Wolbachia} infected mosquitoes when we start with 7.4 times as many \textit{Wolbachia} infected susceptible females compared to wild susceptible females}
+ %   \label{nonautfig2}
+%\end{figure}
+
+Simulations that involved releasing more \textit{Wolbachia} infected aquatic stage,  \textit{Wolbachia} infected males, a combination of \textit{Wolbachia} infected aquatic stage and females and a combination of \textit{Wolbachia} infected aquatic stage and males in the periodic setting yield similar results. Persistence of \textit{Wolbachia} infected mosquitoes can be achieved when seasonality is taken into account using the same scnarions as in Sections \ref{moreaquatics} - \ref{moreaqmale}, but it requires release of a higher number of \textit{Wolbachia} infected mosquitoes compared to wild mosquitoes. For example one would need 3.01 million of \textit{Wolbachia} infected aquatic stage to allow for \textit{Wolbachia} infected mosquitoes to persist when seasonality is included compared to 1.85 millions when all parameters were constant as seen in Section \ref{moreaquatics}. This is a little over six times as many \textit{Wolbachia} infected aquatic stage compared with \textit{Wolbachia} free aquatic stage. 
+\\
+\subsection{Disease present simulations for nonautonomous model}
+Next we run numerical simulations using the initial conditions listed in Table \ref{init-cond-dis-present-table} and baseline value for the parameters listed in Table \ref{tab: param-table} and Table \ref{tab: param_mosq_table}. Furthermore, we change the biting rate of the mosquitoes to $b=1.25$ and the carrying capacity of the aquatic stage to $K=10^9$. 
+
+\subsubsection{Zika takes longer to peak when \textit{Wolbachia} infection is not established under seasonality}
+As we can see in Figure \ref{fig:new6a} the wild mosquitoes dominate, \textit{Wolbachia} infected mosquitoes are eliminated in 300 days. The number of wild mosquitoes susceptible females oscillates between 460 millions and 1.8 billion. Zika infected humans reach a peak of around 1.5 million in 50 days, which represents $15\%$ of the total population. In the autonomous model the peak was reached in 25 days and it was around 1.8 million infected humans (about $18\%$ of the total population) as seen in Section \ref{disfirst}.
+
+\begin{comment}
+
+
+\begin{figure}[H]
+    %\hskip-0.75in
+    \includegraphics[width=\textwidth]{nonaut6amainupdated.png}
+    \caption{Wild mosquitoes dominate and Zika is endemic in humans and wild mosquitoes. The peak of Zika  infected  humans is reached in  50  days  and it is around 1.5  million infected.}
+    \label{fig:nonautonoum6amain}
+\end{figure}
+\end{comment}
+
+\begin{figure}[H]
+    \centering
+    \input{fig/tex/NonAutSimulation6a_main}
+    \makebox[0pt][l]{\input{fig/tex/NonAutSimulation6a_ih}}%
+    \makebox[0pt][l]{\input{fig/tex/NonAutSimulation6a_iwf}}%
+    \caption{Wild mosquitoes dominate and Zika is endemic in humans and wild mosquitoes. The peak of Zika  infected  humans is reached in  50  days  and it is around 1.5  million infected. Zika is endemic in humans and wild mosquitoes when seasonality is included.}
+    \label{fig:new6a}
+\end{figure}
+
+
+
+The insets in Figure \ref{fig:new6a} shows that the number of Zika infected humans oscillates between 2,500 and 5,000 infected humans. Zika infected wild mosquitoes reach 100 millions and then oscillate approximately between 600,000 and 9.7 millions.
+\begin{comment}
+
+
+\begin{figure}[H]
+\begin{subfigure}{.5\textwidth}
+\centering
+\includegraphics[scale=0.35]{nonaut6ahumans.png}
+\end{subfigure}
+\begin{subfigure}{.5\textwidth}
+\centering
+\includegraphics[scale=0.35]{nonaut6amosq.png}
+\end{subfigure}
+\caption{Endemic Zika in humans and wild mosquitoes when seasonality is included.}
+\label{fig:nonaut6ahumansmosq}
+\end{figure}
+\end{comment}
+
+\subsubsection{ Zika takes longer to be eradicated when \textit{Wolbachia} is established with seasonality}
+Changing only the initial conditions from $A_{wf}(0)= 2,500,000$ to $A_{wf}(0)=500,000$ and $A_{wi}(0)=500,000$ to $A_{wi}(0)=1,500,000$ we see in Figure \ref{nonautonoum6b} that the \textit{Wolbachia} infected mosquitoes persist and the number of \textit{Wolbachia} infected susceptible females oscillates between 185 millions and 2.7 billions. Wild mosquitoes are eliminated in roughly one year. The disease is eradicated in humans in 400 days, compared to 300 days in the autonomous model Section \ref{dissecond}, and in 422 days in \textit{Wolbachia} infected mosquitoes as observed in Figure \ref{nonautonoum6b}. This suggests that when seasonality is included, it takes longer for Zika to be eradicated in both humans and mosquitoes.
+
+%\begin{figure}[H]
+    %\hskip-0.75in
+%    \includegraphics[width=\textwidth]{nonaut6bmainupdated.png}
+%    \caption{\textit{Wolbachia} infected mosquitoes dominate and Zika takes longer to be eradicated under seasonality}
+%    \label{nonautonoum6bmain}
+%\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \input{fig/tex/NonAutSimulation6b_new_main_min}
+    \makebox[0pt][l]{\input{fig/tex/NonAutSimulation6b_new_ih}}%
+    \makebox[0pt][l]{\input{fig/tex/NonAutSimulation6b_new_iwi}}%
+    \caption{\textit{Wolbachia} infected mosquitoes dominate and Zika takes longer to be eradicated under seasonality.  Zika eradicated in humans in approximately 400 days when seasonality is included compared to 300 days in the autonomous model. Zika takes around 422 days to be eradicated in \textit{Wolbachia} infected mosquitoes under seasonality.}
+    \label{nonautonoum6b}
+\end{figure}
+
+However, the number of Zika infected humans first decline, and the reach a peak of around 300,000 infected in 100 days. This value is 3 times less than in the case where seasonality was not considered. Also, the number of total Zika infected \textit{Wolbachia} mosquitoes reaches a peak of 34 millions, compared to 14 millions. Therefore, even though the disease takes longer to be eliminated and there are more \textit{Wolbachia} infected mosquitoes, the number of Zika infected humans is much lower in the case where seasonality is considered. 
+%\begin{figure}[H]
+%\begin{subfigure}{.5\textwidth}
+%\centering
+%\includegraphics[scale=0.35]{nonaut6bhumans.png}
+%\end{subfigure}
+%\begin{subfigure}{.5\textwidth}
+%\centering
+%\includegraphics[scale=0.35]{nonaut6bmosq.png}
+%\end{subfigure}
+%\caption{Zika eradicated in humans in approximately 400 days when seasonality is included compared to 300 days in the autonomous model. Zika takes around 422 days to be eradicated in \textit{Wolbachia} infected mosquitoes under seasonality.}
+%\label{fig:nonautinf}
+%\end{figure}
+
+\subsubsection{The peak of Zika is smaller when seasonality is included and \textit{Wolbachia} infected vectors are more competent}
+Next, we investigate the case where the \textit{Wolbachia} infected mosquitoes are less capable of blocking the virus.  Increasing the competence of \textit{Wolbachia} infected mosquitoes allows for the disease to persist even when \textit{Wolbachia} infected mosquitoes dominate as seen in Figure \ref{fig:newfig6c}. When seasonality is taken into account, we see that the number of Zika infected humans reaches a peak of 1.3 million compared to 1.8 million in the autonomous model. Wild mosquitoes are eliminated in approximately one year and \textit{Wolbachia} infected susceptible females oscillate between 188 millions and 2.7 billions. 
+
+%\begin{comment}
+
+
+%\begin{figure}[H]
+    %\hskip-0.75in
+ %   \includegraphics[width=\textwidth]{nonaut6cmainupdated.png}
+ %   \caption{\textit{Wolbachia} infected mosquitoes dominate and Zika is eradicated. Zika infected humans reach a peak of 1.3 million compared to 1.8 million in the autonomous model.}
+ %   \label{fig:nonautonoum6cmain}
+%\end{figure}
+%\begin{figure}[H]
+%%\begin{subfigure}{.5\textwidth}
+%\centering
+%\includegraphics[scale=0.35]{nonaut6chum.png}
+%\end{subfigure}
+%\begin{subfigure}{.5\textwidth}
+%\centering
+%\includegraphics[scale=0.35]{nonaut6cmosq.png}
+%\end{subfigure}
+%\caption{Endemic Zika in humans and \textit{Wolbachia} mosquitoes when \textit{Wolbachia} vectors are more competent.}
+%\label{fig:nonaut6chummosq}
+%\end{figure}
+%\end{comment}
+
+%\begin{figure}[H]
+%\centering \def\svgwidth{\columnwidth} %\includesvg{NonAutSimulation6c_newfig_main}
+%\includegraphics[width=\textwidth]{NonAutSimulation6c_newfig_main.pdf}
+%\caption{\textit{Wolbachia} infected mosquitoes dominate and Zika is eradicated. Zika infected humans reach a peak of 1.3 million compared to 1.8 million in the autonomous model. Zika is endemic  in humans and \textit{Wolbachia} mosquitoes when \textit{Wolbachia} vectors are more competent.}\label{fig:newfig6c}
+%\end{figure}
+
+\begin{figure}[H]
+%\centering \def\svgwidth{\columnwidth} %\includesvg{NonAutSimulation6c_newfig_main}
+\centering
+    \input{fig/tex/NonAutSimulation6c_main}
+    \makebox[0pt][l]{\input{fig/tex/NonAutSimulation6c_ih}}%
+    \makebox[0pt][l]{\input{fig/tex/NonAutSimulation6c_iwi}}%
+\caption{\textit{Wolbachia} infected mosquitoes dominate and Zika is eradicated. Zika infected humans reach a peak of 1.3 million compared to 1.8 million in the autonomous model. Zika is endemic  in humans and \textit{Wolbachia} mosquitoes when \textit{Wolbachia} vectors are more competent.}\label{fig:newfig6c}
+\end{figure}
+
+The insets in Figure \ref{fig:newfig6c} shows that the Zika infected human population goes down to a very small number (around 12) and then up to 30,000 infected. The peak of Zika infected \textit{Wolbachia} infected mosquitoes is reached at around 70 millions and then oscillates between 1,300 and 30 millions as seen in Figure \ref{fig:newfig6c}. In the autonomous model the Zika infected \textit{Wolbachia} infected mosquitoes reached a peak of 110 millions and then settled around 850,000.
+
+
+Simulations for the nonautonomous model suggest that \textit{Wolbachia} persistence can be achieved using similar release strategies but involve a larger number of initial \textit{Wolbachia} infected mosquitoes than in the case where no seasonality was taken into account. Also, in the nonautonomous case the disease takes longer to be eradicated in both humans and mosquitoes and in general there are many more mosquitoes present when seasonality is accounted for. Zika can stay endemic in the human and the dominant mosquito population over multiple years. Again, for realistic parameter values we were not able to observe coexistence of both mosquitoes. 
+
+\section{Discussion}
+\textit{Wolbachia} has been proven to be a powerful, environmentally friendly tool for controlling arboviral diseases including Zika. Mathematical models for transmission of Zika in presence of \textit{Wolbachia} infection can be useful in providing better insights into the behaviour of the disease and to help policy makers with the decision process regarding control and intervention strategies. A number of mathematical models for dengue transmission in presence of \textit{Wolbachia} infected mosquitoes exist, however only a few mathematical models for Zika transmission with an underlying \textit{Wolbachia} infected mosquito population exist. 
+ We investigate a deterministic epidemic model of Zika with two types of vectors, wild mosquitoes and \textit{Wolbachia} infected mosquitoes. Similar to previous dengue-\textit{Wolbachia} models, our model has an aquatic stage for each type of mosquito and an SEIR model for the human population. Unlike other models \cite{ndii2015modelling}, we chose an SI model for the female mosquitoes instead of SEI and included males mosquitoes. We also allow for the ratio between male and female mosquitoes to be different than a half. The model accounts for mating between mosquitoes, assumes complete cytoplasmic incompatibility and allows for different parameters related to vector-born transmission. Many of the dengue-\textit{Wolbachia} models include the life cycle of the mosquitoes by having compartments for egg, larvae, and pupae grouped into one single compartment often denoted as an aquatic stage. The model in \cite{koiller2014aedes} has different compartments for eggs, pupae and larvae and female mosquitoes are split into two compartment: young immature females who does not mate and a mature female. They have separate models for \textit{Wolbachia} infection within the mosquito population which inlcudes complete cytoplasmic incompatibility and perfect maternal transmission of \textit{Wolbachia} infection and then couple that model with the Dietz-Bailey model of dengue. Despite the extra compartments in \cite{koiller2014aedes}, their results of the \textit{Wolbachia} infection among the mosquitoes are very similar to ours. Two equilibria are asymptotically
+stable : an equilibrium where all the mosquito population is \textit{Wolbachia} free and an equilibria where all the
+mosquitoes are \textit{Wolbachia} infected. A third unstable equilibrium exists. This model however does not explore many numerical simulations or different release strategies nor does it look at the effects of seasonality. 
+
+The stability analysis of our model along with numerical simulations, and sensitivity analysis show that once the \textit{Wolbachia} infected mosquitoes get established, they can ultimately dominate the mosquito population. The results show that the persistence of \textit{Wolbachia} infection within the mosquito population can be achieved by multiple release strategies. The persistence of \textit{Wolbachia} infected mosquitoes can be achieved by releasing \textit{Wolbachia} infected females, \textit{Wolbachia} infected males or a combination of both.  This result agrees with other findings in the literature \cite{wang2017modeling} that the \textit{Wolbachia} infection persists if the ratio of the release rate of \textit{Wolbachia} infected mosquitoes over the number of wild mosquitoes at the initial state is large enough. The impact on Zika transmission in the human and mosquito population using the strategy of releasing \textit{Wolbachia} infected male mosquitoes was also explored in \cite{xue2021releasing}. Their findings that releasing \textit{Wolbachia} infected mosquitoes causes the disease to die out faster and the number of infected humans to decrease agree with our results. Also, in \cite{xue2021releasing}, numerical simulations show  that introduction of \textit{Wolbachia} infected mosquitoes leads to a significant decrease in susceptible mosquito population and elimination of wild mosquitoes. The model in \cite{xue2021releasing} does not have a compartment for \textit{Wolbachia} infected aquatic stage. By including a compartment for \textit{Wolbachia} infected aquatic stage, we were able to investigate the release strategy that allows for investigating the effect of releasing \textit{Wolbachia} infected aquatic stage. Our findings suggest that persistence of \textit{Wolbachia} infection can also be achieved by releasing \textit{Wolbachia} infected aquatic stage or by first reducing the existing \textit{Wolbachia} free aquatic stage and then releasing \textit{Wolbachia} infected aquatic stage mosquitoes. 
+
+Sensitivity analysis reveals that the basic reproduction number in presence of both types of mosquitoes is most sensitive to the death rate of adult mosquitoes and the direct transmission, results that match prior expectations as in \cite{xue2021releasing}. Moreover, we have concluded that the presence of \textit{Wolbachia} infected mosquitoes switches the control strategies. When no
+\textit{Wolbachia} infected mosquitoes are present the control should be targeted towards decreasing the lifespan of the mosquitoes and when \textit{Wolbachia} infected mosquitoes are present the efforts should be concentrated on treatment of humans to increase the recovery rate and sexual transmission control to decrease the direct transmission rate. Our findings agree with the conclusion in \cite{xue2021releasing} that mitigation strategies should focus on both the mosquito-human transmission and direct transmission, but they are more specific to when each strategy is more efficient.
+
+None of the previous Zika-\textit{Wolbachia} models have studied the effect of environmental fluctuations of temperature.  Since the transmission of Zika virus is affected by periodic seasonality we explored that by including seasonal variation in the temperature-dependent parameters (egg laying rates, mosquito death rates and transitioning rates). This lead to the model giving a more detailed outcome information about the mosquito population dynamics as temperature is assumed to vary. By including seasonality, we expect that the model would give a more practical guide for the case when the release process spans multiple seasons. When seasonality is considered, we find that the persistence of \textit{Wolbachia} is still achieved by the same release strategies but it requires a higher initial number of \textit{Wolbachia} infected released mosquitoes. From these results we can say that models that assume constant conditions produce thresholds conditions that are less reliable when oscillations are taken into account and thus plays an important role when releasing \textit{Wolbachia} in seasonally varying climates. In both cases when seasonality is considered or not, numerical simulations suggest that if the \textit{Wolbachia} strain does lose its strength to block virus proliferation within the mosquito, then even with \textit{Wolbachia} infected mosquitoes dominating, the disease can still stay endemic. 
+
+Future work will include developing models for vector control methods that investigate the impact of releasing mosquitoes infected with two different \textit{Wolbachia} strains (wAu and wMel) in a human population infected with Zika and explore how single or combined strategies will impact the disease dynamics. We are interested in understanding how different features of \textit{Wolbachia}  infection, such as non-induction of CI, high maintenance of the \textit{Wolbachia} infection at high temperature (present in wAu strain) and loss of \textit{Wolbachia} infection, imperfect maternal transmission (wMel) in mosquitoes could drive a reduction in Zika and other arboviral diseases transmission. These findings will further contribute to the effort of reducing or eliminating arboviral transmission throughout the world.
+\section{Acknowledgements}
+The authors would like to thank James Keesling for insights leading to the model, the reviewers for suggested improvements, Sergei Pilyugin for some corrections, and Nick Sizemore for assistance with the MATLAB code.
+
+
+\bibliographystyle{ws-rv-van}
+\bibliography{wolbachiaRef}   % 
+
+\end{document}

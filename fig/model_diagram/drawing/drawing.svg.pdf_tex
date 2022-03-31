@@ -1,0 +1,112 @@
+%% Creator: Inkscape 1.1.2 (b8e25be8, 2022-02-05), www.inkscape.org
+%% PDF/EPS/PS + LaTeX output extension by Johan Engelen, 2010
+%% Accompanies image file 'drawing.svg.pdf' (pdf, eps, ps)
+%%
+%% To include the image in your LaTeX document, write
+%%   \input{<filename>.pdf_tex}
+%%  instead of
+%%   \includegraphics{<filename>.pdf}
+%% To scale the image, write
+%%   \def\svgwidth{<desired width>}
+%%   \input{<filename>.pdf_tex}
+%%  instead of
+%%   \includegraphics[width=<desired width>]{<filename>.pdf}
+%%
+%% Images with a different path to the parent latex file can
+%% be accessed with the `import' package (which may need to be
+%% installed) using
+%%   \usepackage{import}
+%% in the preamble, and then including the image with
+%%   \import{<path to file>}{<filename>.pdf_tex}
+%% Alternatively, one can specify
+%%   \graphicspath{{<path to file>/}}
+%% 
+%% For more information, please see info/svg-inkscape on CTAN:
+%%   http://tug.ctan.org/tex-archive/info/svg-inkscape
+%%
+\begingroup%
+  \makeatletter%
+  \providecommand\color[2][]{%
+    \errmessage{(Inkscape) Color is used for the text in Inkscape, but the package 'color.sty' is not loaded}%
+    \renewcommand\color[2][]{}%
+  }%
+  \providecommand\transparent[1]{%
+    \errmessage{(Inkscape) Transparency is used (non-zero) for the text in Inkscape, but the package 'transparent.sty' is not loaded}%
+    \renewcommand\transparent[1]{}%
+  }%
+  \providecommand\rotatebox[2]{#2}%
+  \newcommand*\fsize{\dimexpr\f@size pt\relax}%
+  \newcommand*\lineheight[1]{\fontsize{\fsize}{#1\fsize}\selectfont}%
+  \ifx\svgwidth\undefined%
+    \setlength{\unitlength}{595.27559055bp}%
+    \ifx\svgscale\undefined%
+      \relax%
+    \else%
+      \setlength{\unitlength}{\unitlength * \real{\svgscale}}%
+    \fi%
+  \else%
+    \setlength{\unitlength}{\svgwidth}%
+  \fi%
+  \global\let\svgwidth\undefined%
+  \global\let\svgscale\undefined%
+  \makeatother%
+  \begin{picture}(1,1.41428571)%
+    \lineheight{1}%
+    \setlength\tabcolsep{0pt}%
+    \put(0,0){\includegraphics[width=\unitlength,page=1]{drawing.svg.pdf}}%
+    \put(0.24080926,1.01094588){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$A_{wf}$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=2]{drawing.svg.pdf}}%
+    \put(0.24080926,0.66315532){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$S_{wf}$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=3]{drawing.svg.pdf}}%
+    \put(0.03914736,0.66315532){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$M_{wf}$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=4]{drawing.svg.pdf}}%
+    \put(0.24080926,0.31536471){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$I_{wf}$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=5]{drawing.svg.pdf}}%
+    \put(0.18745988,0.846338){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\alpha \gamma_{wf}$\end{tabular}}}}%
+    \put(0.00556809,0.846338){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$(1-\alpha) \gamma_{wf}$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=6]{drawing.svg.pdf}}%
+    \put(0.41482457,0.80921721){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\beta_{hh}$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=7]{drawing.svg.pdf}}%
+    \put(0.72163958,1.0104409){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$A_{wi}$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=8]{drawing.svg.pdf}}%
+    \put(0.71978355,0.66265034){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$S_{wi}$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=9]{drawing.svg.pdf}}%
+    \put(0.90710038,0.66636242){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$M_{wi}$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=10]{drawing.svg.pdf}}%
+    \put(0.71394292,0.32042785){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$I_{wi}$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=11]{drawing.svg.pdf}}%
+    \put(0.74928378,0.84768899){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\alpha \gamma_{wi}$\end{tabular}}}}%
+    \put(0.85693402,0.84768907){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$(1-\alpha) \gamma_{wi}$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=12]{drawing.svg.pdf}}%
+    \put(0.476578,1.1700442){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$S_h$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=13]{drawing.svg.pdf}}%
+    \put(0.47734679,0.90701711){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$E_h$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=14]{drawing.svg.pdf}}%
+    \put(0.48029007,0.64584596){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$I_h$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=15]{drawing.svg.pdf}}%
+    \put(0.47843405,0.38285762){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$R_h$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=16]{drawing.svg.pdf}}%
+    \put(0.5048424,1.27693888){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\Lambda$\end{tabular}}}}%
+    \put(0.50669845,0.78323268){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\nu_h$\end{tabular}}}}%
+    \put(0.51041052,0.52709938){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\gamma_h$\end{tabular}}}}%
+    \put(0.50298642,0.2858144){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\mu_h$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=17]{drawing.svg.pdf}}%
+    \put(0.23623512,1.1255539){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\eta$\end{tabular}}}}%
+    \put(0.1439542,0.99575655){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\mu_A$\end{tabular}}}}%
+    \put(0.06430845,0.56908902){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\mu_v$\end{tabular}}}}%
+    \put(0.16472769,0.68045791){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\mu_v$\end{tabular}}}}%
+    \put(0.21772937,0.21627385){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\mu_v$\end{tabular}}}}%
+    \put(0.74939034,0.22392322){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\mu_{vi}$\end{tabular}}}}%
+    \put(0.79676917,0.68169307){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\mu_{vi}$\end{tabular}}}}%
+    \put(0.89596932,0.57827583){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\mu_{vi}$\end{tabular}}}}%
+    \put(0.82097499,1.00078098){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\mu_{Ai}$\end{tabular}}}}%
+    \put(0.75988962,1.12949115){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$q_1, q_2$\end{tabular}}}}%
+    \put(0.56315893,0.92914166){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\mu_h$\end{tabular}}}}%
+    \put(0.56044086,1.18736941){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\mu_h$\end{tabular}}}}%
+    \put(0.56392775,0.66950827){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\mu_h$\end{tabular}}}}%
+    \put(0.2056378,0.50609296){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\beta_{hv}$\end{tabular}}}}%
+    \put(0.75060944,0.5110241){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\beta_{hv}^w$\end{tabular}}}}%
+    \put(0.32793379,0.80736667){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\beta_{vh}$\end{tabular}}}}%
+    \put(0.6172865,0.80387982){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\beta_{vh}^w$\end{tabular}}}}%
+  \end{picture}%
+\endgroup%
